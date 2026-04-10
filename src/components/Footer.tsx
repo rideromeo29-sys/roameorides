@@ -5,7 +5,7 @@ const Footer = () => (
   <footer className="bg-surface-lowest pt-16 pb-8 px-6 md:px-16">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       <div>
-        <h3 className="font-serif text-xl font-bold text-on-surface mb-2">ROAMEO RIDES</h3>
+        <h3 className="font-serif text-xl font-bold tracking-tighter text-on-surface mb-2">ROAMEO RIDES</h3>
         <p className="text-xs uppercase tracking-[0.15em] text-secondary mb-4">Redefining the Indian Road</p>
         <p className="text-sm text-on-surface-variant leading-relaxed">
           Pioneering luxury land travel. We turn the journey into the destination with our curated midnight fleet.

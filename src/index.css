@@ -5,86 +5,24 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 7.5%;
-    --foreground: 20 7% 89%;
-
-    --card: 0 0% 12.5%;
-    --card-foreground: 20 7% 89%;
-
-    --popover: 0 0% 7.5%;
-    --popover-foreground: 20 7% 89%;
-
-    --primary: 24 100% 76%;
-    --primary-foreground: 24 100% 16%;
-
-    --primary-container: 24 82% 53%;
-    --primary-container-foreground: 24 100% 16%;
-
-    --secondary: 42 72% 65%;
-    --secondary-foreground: 42 100% 12%;
-
-    --muted: 0 0% 11%;
-    --muted-foreground: 20 5% 55%;
-
-    --accent: 24 82% 53%;
-    --accent-foreground: 20 7% 89%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 20 12% 22%;
-    --input: 20 12% 22%;
-    --ring: 24 100% 76%;
-
-    --radius: 1rem;
-
-    --surface: 0 0% 7.5%;
-    --surface-low: 0 0% 10.6%;
-    --surface-container: 0 0% 12.5%;
-    --surface-high: 0 0% 16.5%;
-    --surface-highest: 0 0% 20.8%;
-    --surface-lowest: 0 0% 5.5%;
-
-    --on-surface: 20 7% 89%;
-    --on-surface-variant: 20 22% 78%;
-
-    --outline: 20 14% 57%;
-    --outline-variant: 20 16% 28%;
-
-    --gold: 42 72% 65%;
-    --gold-dim: 42 72% 45%;
-
-    --sidebar-background: 0 0% 7.5%;
-    --sidebar-foreground: 20 7% 89%;
-    --sidebar-primary: 24 82% 53%;
-    --sidebar-primary-foreground: 24 100% 16%;
-    --sidebar-accent: 0 0% 12.5%;
-    --sidebar-accent-foreground: 20 7% 89%;
-    --sidebar-border: 0 0% 11%;
-    --sidebar-ring: 24 100% 76%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
   ::selection {
-    background: hsl(var(--primary-container));
-    color: hsl(var(--primary-container-foreground));
+    background: #e87722;
+    color: #522300;
   }
 }
 
 @layer utilities {
   .gold-fade-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, hsl(var(--gold)) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, #e6c364 50%, transparent 100%);
   }
 
   .glass-nav {
@@ -93,42 +31,6 @@
   }
 
   .gradient-primary-btn {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-container)));
-  }
-
-  .text-gold {
-    color: hsl(var(--gold));
-  }
-
-  .bg-surface {
-    background-color: hsl(var(--surface));
-  }
-
-  .bg-surface-low {
-    background-color: hsl(var(--surface-low));
-  }
-
-  .bg-surface-container {
-    background-color: hsl(var(--surface-container));
-  }
-
-  .bg-surface-high {
-    background-color: hsl(var(--surface-high));
-  }
-
-  .bg-surface-highest {
-    background-color: hsl(var(--surface-highest));
-  }
-
-  .bg-surface-lowest {
-    background-color: hsl(var(--surface-lowest));
-  }
-
-  .text-on-surface {
-    color: hsl(var(--on-surface));
-  }
-
-  .text-on-surface-variant {
-    color: hsl(var(--on-surface-variant));
+    background: linear-gradient(135deg, #ffb68b, #e87722);
   }
 }

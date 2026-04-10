@@ -16,7 +16,7 @@ const AboutPage = () => (
   <div>
     <HeroSection
       image={heroAbout}
-      title={<span className="text-5xl md:text-7xl font-extralight italic tracking-tight">Born from a Passion for Travel.</span>}
+      title={<span className="text-5xl md:text-7xl">Born from a Passion for Travel.</span>}
       subtitle="We don't just offer caravans — we create unforgettable experiences."
     />
 
@@ -73,7 +73,7 @@ const AboutPage = () => (
         href="https://wa.me/919469456789"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 gradient-primary-btn text-primary-foreground font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+        className="inline-flex items-center gap-2 bg-primary-container text-on-primary font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
       >
         <MessageCircle size={18} />
         Book on WhatsApp

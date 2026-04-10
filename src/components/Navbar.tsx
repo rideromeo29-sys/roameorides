@@ -23,7 +23,7 @@ const Navbar = () => {
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-        <Link to="/" className="font-serif text-2xl font-bold tracking-tight text-on-surface">
+        <Link to="/" className="font-serif text-2xl font-bold tracking-tighter text-on-surface">
           ROAMEO
         </Link>
       </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
 
       <Link
         to="/contact"
-        className="gradient-primary-btn text-primary-foreground font-bold px-6 py-2.5 rounded-full hover:scale-105 transition-transform duration-300 uppercase text-xs tracking-widest shadow-lg"
+        className="bg-primary-container text-on-primary font-bold px-6 py-2.5 rounded-full hover:scale-105 transition-transform duration-300 uppercase text-xs tracking-widest shadow-lg"
       >
         Book Now
       </Link>
