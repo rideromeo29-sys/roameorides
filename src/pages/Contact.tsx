@@ -14,7 +14,7 @@ const ContactPage = () => (
   <div>
     <HeroSection
       image={heroContact}
-      title={<span className="text-5xl md:text-7xl font-extralight italic tracking-tight">Let's Plan Your Journey.</span>}
+      title={<span className="text-5xl md:text-7xl">Let's Plan Your Journey.</span>}
       subtitle="We're available 365 days, 24/7 — just reach out."
     />
 
@@ -40,7 +40,7 @@ const ContactPage = () => (
             href="https://wa.me/919469456789"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 gradient-primary-btn text-primary-foreground font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 bg-primary-container text-on-primary font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
           >
             <MessageCircle size={18} />
             Chat on WhatsApp
@@ -55,7 +55,7 @@ const ContactPage = () => (
         <div className="absolute inset-0 bg-gradient-to-b from-surface-high/50 to-surface-container" />
         <div className="relative z-10 flex flex-col items-center">
           <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3 animate-pulse">
-            <MapPin size={24} className="text-primary-foreground" />
+            <MapPin size={24} className="text-on-primary" />
           </div>
           <p className="text-on-surface-variant text-sm">Ibrahimpatnam, Telangana</p>
         </div>

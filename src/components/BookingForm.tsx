@@ -32,7 +32,7 @@ const BookingForm = () => (
         href="https://wa.me/919469456789"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full gradient-primary-btn text-primary-foreground font-bold py-4 rounded-full hover:scale-[1.02] transition-transform uppercase text-sm tracking-widest flex items-center justify-center gap-2"
+        className="w-full bg-primary-container text-on-primary font-bold py-4 rounded-full hover:scale-[1.02] transition-transform uppercase text-sm tracking-widest flex items-center justify-center gap-2"
       >
         <MessageCircle size={18} />
         Send via WhatsApp

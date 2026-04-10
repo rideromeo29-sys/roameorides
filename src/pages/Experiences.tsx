@@ -51,7 +51,7 @@ const ExperiencesPage = () => (
     <HeroSection
       image={heroExperiences}
       title={
-        <span className="text-5xl md:text-7xl font-extralight italic tracking-tight">
+        <span className="text-5xl md:text-7xl">
           Experiences<br />Designed for Stories.
         </span>
       }
@@ -64,7 +64,7 @@ const ExperiencesPage = () => (
 
     {sections.map((s, i) => (
       <section key={i} className={`py-24 px-6 md:px-16 ${i % 2 === 0 ? "bg-background" : "bg-surface-low"}`}>
-        <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${s.reverse ? "md:direction-rtl" : ""}`}>
+        <div className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center`}>
           <div className={s.reverse ? "md:order-2" : ""}>
             <span className="text-xs uppercase tracking-[0.15em] text-secondary font-semibold mb-4 block">{s.label}</span>
             <h2 className="font-serif text-3xl md:text-5xl text-on-surface mb-6 leading-tight">{s.title}</h2>
@@ -96,7 +96,7 @@ const ExperiencesPage = () => (
         href="https://wa.me/919469456789"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 gradient-primary-btn text-primary-foreground font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+        className="inline-flex items-center gap-2 bg-primary-container text-on-primary font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
       >
         <MessageCircle size={18} />
         Book on WhatsApp

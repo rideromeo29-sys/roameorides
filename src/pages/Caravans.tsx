@@ -51,7 +51,7 @@ const CaravansPage = () => (
   <div>
     <HeroSection
       image={heroCaravans}
-      title={<span className="text-5xl md:text-7xl font-extralight italic tracking-tight">Our Luxury Fleet</span>}
+      title={<span className="text-5xl md:text-7xl">Our Luxury Fleet</span>}
       subtitle="Every caravan, a moving palace."
       actions={[
         { label: "Book a Caravan", to: "/contact" },
@@ -78,7 +78,7 @@ const CaravansPage = () => (
                   ))}
                 </div>
                 <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">{c.desc}</p>
-                <Link to="/contact" className="block w-full gradient-primary-btn text-primary-foreground font-bold py-3.5 rounded-full text-center uppercase text-xs tracking-widest hover:scale-[1.02] transition-transform">
+                <Link to="/contact" className="block w-full bg-primary-container text-on-primary font-bold py-3.5 rounded-full text-center uppercase text-xs tracking-widest hover:scale-[1.02] transition-transform">
                   Book This Caravan
                 </Link>
               </div>
@@ -134,7 +134,7 @@ const CaravansPage = () => (
             href="https://wa.me/919469456789"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full gradient-primary-btn text-primary-foreground font-bold py-4 rounded-full uppercase text-sm tracking-widest flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
+            className="w-full bg-primary-container text-on-primary font-bold py-4 rounded-full uppercase text-sm tracking-widest flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
           >
             <MessageCircle size={18} />
             Book via WhatsApp
@@ -146,7 +146,7 @@ const CaravansPage = () => (
     {/* CTA */}
     <section className="bg-primary-container py-8 px-6 md:px-16">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <h3 className="text-2xl md:text-3xl font-serif italic text-primary-foreground">Ready for the road?</h3>
+        <h3 className="text-2xl md:text-3xl font-serif italic text-on-primary">Ready for the road?</h3>
         <a
           href="https://wa.me/919469456789"
           target="_blank"

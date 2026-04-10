@@ -40,11 +40,11 @@ const Index = () => (
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
       <div className="relative z-10 max-w-5xl px-8 md:px-20 mt-20">
-        <h1 className="font-headline text-on-surface mb-8 leading-tight">
-          <span className="block text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight mb-2">
+        <h1 className="font-sans font-extralight tracking-tight text-on-surface mb-8 leading-tight">
+          <span className="block text-5xl md:text-6xl lg:text-7xl mb-2">
             Luxury caravan
           </span>
-          <span className="block text-5xl md:text-7xl lg:text-8xl font-extralight italic tracking-tight">
+          <span className="block text-5xl md:text-7xl lg:text-8xl italic">
             Experiences in India
           </span>
         </h1>
@@ -52,7 +52,7 @@ const Index = () => (
           Experience the wild in unparalleled luxury. Not just travel, it's Roameo—redefining the modern wayfarer's journey through the Indian road.
         </p>
         <div className="flex flex-wrap gap-6 items-center">
-          <Link to="/contact" className="gradient-primary-btn text-primary-foreground font-bold px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-xl uppercase text-xs tracking-widest">
+          <Link to="/contact" className="bg-primary-container text-on-primary font-bold px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-xl uppercase text-xs tracking-widest">
             Book Now
           </Link>
           <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-10 py-4 rounded-full hover:scale-105 transition-transform uppercase text-xs tracking-widest font-semibold">
