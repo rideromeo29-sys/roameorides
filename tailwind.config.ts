@@ -63,7 +63,7 @@ export default {
           highest: "#353534",
           lowest: "#0e0e0e",
         },
-        gold: "#e6c364",
+        gold: "#C9A84C",
         "gold-dim": "#785d00",
         "on-surface": "#e5e2e1",
         "on-surface-variant": "#ddc1b2",
