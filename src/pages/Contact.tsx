@@ -37,10 +37,10 @@ const ContactPage = () => (
         <div className="gold-fade-divider my-8" />
         <div className="flex justify-center">
           <a
-            href="https://wa.me/919469456789"
+            href="https://wa.me/9469456789?text=Hi%20Roameo%20Rides!%20I'm%20looking%20for%20a%20premium%20caravan%20experience.%20Can%20you%20help%20me%20plan%20my%20journey?"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary-container text-on-primary font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 bg-accent text-white font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform"
           >
             <MessageCircle size={18} />
             Chat on WhatsApp
@@ -49,16 +49,19 @@ const ContactPage = () => (
       </div>
     </section>
 
-    {/* Map Placeholder */}
+    {/* Embedded Google Map */}
     <section className="bg-background py-16 px-6 md:px-16">
-      <div className="max-w-5xl mx-auto h-80 rounded-2xl bg-surface-container relative overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-high/50 to-surface-container" />
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3 animate-pulse">
-            <MapPin size={24} className="text-on-primary" />
-          </div>
-          <p className="text-on-surface-variant text-sm">Ibrahimpatnam, Telangana</p>
-        </div>
+      <div className="max-w-5xl mx-auto h-80 rounded-2xl overflow-hidden">
+        <iframe
+          title="Roameo Rides Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3810.123!2d78.6!3d17.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDA2JzAwLjAiTiA3OMKwMzYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+          width="100%"
+          height="100%"
+          style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(80%)" }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
     </section>
 
@@ -67,12 +70,12 @@ const ContactPage = () => (
 
     {/* Social */}
     <section className="bg-surface-lowest py-16 px-6 text-center">
-      <h3 className="text-on-surface text-lg font-semibold mb-6">Connect with us on social media</h3>
+      <h3 className="font-serif text-on-surface text-lg font-semibold mb-6">Connect with us on social media</h3>
       <div className="flex justify-center gap-4">
-        <a href="#" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-primary transition-colors text-sm">
+        <a href="https://www.instagram.com/roameorides?igsh=N2MxZXkyd3ZkeXEw" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-primary transition-colors text-sm">
           <Instagram size={16} /> Instagram
         </a>
-        <a href="#" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-primary transition-colors text-sm">
+        <a href="https://www.facebook.com/share/1JfHxxoCVT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-primary transition-colors text-sm">
           <Facebook size={16} /> Facebook
         </a>
       </div>

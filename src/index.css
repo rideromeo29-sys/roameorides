@@ -34,3 +34,12 @@
     background: linear-gradient(135deg, #ffb68b, #e87722);
   }
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

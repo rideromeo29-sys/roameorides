@@ -16,16 +16,16 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-4 md:py-6 transition-colors duration-500 ${
+      className={`fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-4 md:py-6 transition-all duration-500 ${
         scrolled
-          ? "bg-[#1C1C1C] border-b border-white/5"
+          ? "bg-background/90 backdrop-blur-md shadow-lg border-b border-white/10"
           : "bg-transparent"
       }`}
     >
@@ -59,13 +59,13 @@ const Navbar = () => {
 
       <Link
         to="/contact"
-        className="bg-[#E87722] text-white font-semibold px-8 py-3 rounded-full hover:shadow-[0_0_20px_rgba(232,119,34,0.4)] transition-all uppercase text-sm tracking-widest"
+        className="bg-accent text-white font-semibold px-8 py-3 rounded-full hover:shadow-[0_0_20px_rgba(232,119,34,0.4)] transition-all uppercase text-sm tracking-widest"
       >
         Book Now
       </Link>
 
       {mobileOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#1C1C1C]/95 glass-nav md:hidden flex flex-col items-center gap-6 py-8">
+        <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-md md:hidden flex flex-col items-center gap-6 py-8">
           {navLinks.map((link) => (
             <Link
               key={link.to}
