@@ -32,7 +32,7 @@ const HeroSection = ({ image, title, subtitle, actions, height = "h-[70vh]" }: H
               <Link
                 key={a.label}
                 to={a.to || "#"}
-                className="bg-primary-container text-on-primary px-8 py-3.5 rounded-full hover:scale-105 transition-transform uppercase text-xs tracking-widest font-bold shadow-xl"
+                className="bg-[#E87722] text-white px-8 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(232,119,34,0.4)] hover:scale-105 transition-all uppercase text-xs tracking-widest font-bold shadow-xl"
               >
                 {a.label}
               </Link>
