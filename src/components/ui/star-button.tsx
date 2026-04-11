@@ -24,7 +24,7 @@ const StarButton = ({ to, href, children, className = "" }: StarButtonProps) => 
     <Star
       key={i}
       size={10}
-      className="absolute opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] text-accent fill-accent"
+      className="absolute opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] text-accent fill-accent"
       style={{
         top: pos.top,
         bottom: pos.bottom,
@@ -42,7 +42,7 @@ const StarButton = ({ to, href, children, className = "" }: StarButtonProps) => 
   const starsWithHover = starPositions.map((pos, i) => (
     <span
       key={i}
-      className="absolute opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
+      className="absolute opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] pointer-events-none"
       style={{
         top: pos.top,
         bottom: pos.bottom,

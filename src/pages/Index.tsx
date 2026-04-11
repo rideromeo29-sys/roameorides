@@ -32,12 +32,12 @@ const whyChoose = [
 ];
 
 const sliderImages = [
-  { src: fleetWanderer, alt: "Luxury caravan exterior" },
-  { src: fleetNomad, alt: "Nomad signature interior" },
-  { src: fleetExplorer, alt: "Summit explorer on road" },
-  { src: experienceCouple, alt: "Couple getaway experience" },
-  { src: fleetWanderer, alt: "Caravan at sunset" },
-  { src: fleetNomad, alt: "Premium caravan lounge" },
+  { src: "/1.jpeg", alt: "Instagram feed image 1" },
+  { src: "/2.jpeg", alt: "Instagram feed image 2" },
+  { src: "/4.jpeg", alt: "Instagram feed image 3" },
+  { src: "/5.jpeg", alt: "Instagram feed image 4" },
+  { src: "/6.jpeg", alt: "Instagram feed image 5" },
+  { src: "/7.jpeg", alt: "Instagram feed image 6" },
 ];
 
 const Index = () => {
@@ -50,53 +50,61 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero */}
-      <section ref={heroRef} className="relative h-screen w-full flex items-center justify-start overflow-hidden">
+      {/* Hero Section with Rich Blend */}
+      <section ref={heroRef} className="relative h-screen w-full flex items-center justify-start overflow-hidden top-0 left-0">
         <motion.div className="absolute inset-0 z-0" style={{ y: heroY }}>
           <img src={heroHome} alt="Luxury caravan on mountain road" className="w-full h-full object-cover" width={1920} height={1080} />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
         </motion.div>
-        <div className="relative z-10 max-w-5xl px-8 md:px-20 mt-20">
-          <h1 className="font-sans font-extralight tracking-tight text-on-surface mb-8 leading-tight">
-            <span className="block text-5xl md:text-6xl lg:text-7xl mb-2">
+        
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 mt-20">
+          <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
+            <span className="block text-5xl md:text-6xl lg:text-7xl font-[200] text-on-surface/85 mb-1 md:mb-2">
               Luxury caravan
             </span>
-            <span className="block text-5xl md:text-7xl lg:text-8xl italic">
-              Experiences in India
+            <span className="block text-5xl md:text-6xl lg:text-7xl font-[500]">
+              Experiences in India.
             </span>
           </h1>
-          <p className="text-on-surface-variant text-lg md:text-xl font-extralight mb-12 max-w-2xl opacity-80 leading-relaxed tracking-wide">
+          
+          <p className="text-on-surface/70 text-base md:text-xl font-light mb-10 max-w-2xl leading-relaxed tracking-wide">
             Experience the wild in unparalleled luxury. Not just travel, it's Roameo—redefining the modern wayfarer's journey through the Indian road.
           </p>
-          <div className="flex flex-wrap gap-6 items-center">
+          
+          <div className="flex flex-wrap gap-4 md:gap-6 items-center">
             <StarButton to="/contact">Book Now</StarButton>
-            <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-10 py-4 rounded-full hover:scale-105 transition-transform uppercase text-xs tracking-widest font-semibold">
+            <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-8 md:px-10 py-3 md:py-4 rounded-full hover:scale-105 transition-transform uppercase text-[10px] md:text-xs tracking-widest font-semibold">
               View Caravans
             </Link>
           </div>
         </div>
+
+        {/* BOTTOM BLEND: Soft mix Hero with the Fleet Grid below */}
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-20" />
       </section>
 
-      {/* Our Fleet */}
-      <section className="bg-surface-low py-24 px-6 md:px-16">
+      {/* Our Fleet - Reduced space via tight top padding */}
+      <section className="bg-surface-low pt-12 pb-24 px-6 md:px-16 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl text-on-surface italic">Our Fleet</h2>
+            <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface">
+              Our Fleet
+            </h2>
             <p className="text-on-surface-variant text-sm max-w-md mt-4 md:mt-0 leading-relaxed">
               Hand-picked, custom-built mobile luxury suites designed for the rugged Indian terrain.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {fleetCards.map((c) => (
-              <div key={c.title} className="bg-surface-container rounded-2xl overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+              <div key={c.title} className="bg-surface-container rounded-2xl overflow-hidden group hover:scale-[1.02] transition-transform duration-300 border border-white/5 shadow-xl">
                 <div className="h-56 overflow-hidden">
                   <img src={c.img} alt={c.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-serif text-on-surface font-semibold text-lg mb-3">{c.title}</h3>
+                  <h3 className="luxury-serif text-on-surface font-semibold text-lg mb-3">{c.title}</h3>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {c.specs.map((s) => (
-                      <span key={s} className="text-xs px-3 py-1 rounded-full bg-surface-high text-on-surface-variant uppercase tracking-wider">{s}</span>
+                      <span key={s} className="text-[10px] px-3 py-1 rounded-full bg-surface-high text-on-surface-variant uppercase tracking-widest font-semibold">{s}</span>
                     ))}
                   </div>
                   <Link to={c.link} className="text-secondary text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
@@ -114,12 +122,12 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
-              <h2 className="font-serif text-4xl md:text-5xl text-on-surface italic mb-8">
+              <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface mb-8">
                 Curated<br />Experiences
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 {experiences.map((e) => (
-                  <div key={e.title} className="bg-surface-container rounded-2xl p-5 hover:bg-surface-high transition-colors">
+                  <div key={e.title} className="bg-surface-container rounded-2xl p-5 hover:bg-surface-high transition-colors border border-white/5">
                     <e.icon size={20} className="text-secondary mb-3" />
                     <h4 className="text-on-surface text-sm font-semibold mb-1">{e.title}</h4>
                     <p className="text-on-surface-variant text-xs leading-relaxed">{e.desc}</p>
@@ -127,8 +135,10 @@ const Index = () => {
                 ))}
               </div>
             </div>
-            <div className="md:col-span-2 h-[500px] rounded-2xl overflow-hidden">
-              <img src={experienceCouple} alt="Curated experience" className="w-full h-full object-cover" loading="lazy" />
+            <div className="md:col-span-2 h-[500px] rounded-2xl overflow-hidden relative group">
+              <img src={experienceCouple} alt="Curated experience" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+              {/* Image Blend Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
             </div>
           </div>
         </div>
@@ -137,7 +147,7 @@ const Index = () => {
       {/* Why Choose */}
       <section className="bg-surface-low py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="font-serif text-3xl md:text-4xl text-secondary italic mb-16">Why Choose Roameo Rides</h2>
+          <h2 className="luxury-serif text-3xl md:text-4xl text-secondary mb-16">Why Choose Roameo Rides</h2>
           <div className="gold-fade-divider max-w-xs mx-auto mb-16" />
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
             {whyChoose.map((w) => (
@@ -155,7 +165,7 @@ const Index = () => {
       <section className="bg-background py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-12">
-            <h2 className="font-serif text-3xl text-on-surface italic">Follow Our Journey</h2>
+            <h2 className="luxury-serif text-3xl text-on-surface">Follow Our Journey</h2>
             <a
               href="https://www.instagram.com/roameorides?igsh=N2MxZXkyd3ZkeXEw"
               target="_blank"

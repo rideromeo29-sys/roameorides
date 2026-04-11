@@ -1,21 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
+  :root {
+    --font-sans: 'Manrope', sans-serif;
+    --font-serif: 'Noto Serif', serif;
   }
 
   body {
-    @apply bg-surface text-on-surface font-sans antialiased;
+    @apply bg-[#0E0E0E] text-[#E5E2E1] antialiased;
+    font-family: var(--font-sans);
   }
 
   ::selection {
     background: #e87722;
-    color: #522300;
+    color: #ffffff;
   }
 }
 
@@ -36,10 +37,19 @@
 }
 
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+/* BRUTE FORCE FONT OVERRIDES FOR ENTIRE SITE */
+
+/* 1. Force Manrope on all regular text, forms, and buttons */
+body, p, span, a, input, button, label, li {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* 2. Force Poppins on ALL headings, and remove italics globally */
+h1, h2, h3, h4, h5, h6, .luxury-serif, .font-serif, .font-headline {
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: -0.02em !important; /* Premium Apple-style kerning */
+  font-style: normal !important; /* THIS REMOVES THE ITALICS EVERYWHERE */
 }

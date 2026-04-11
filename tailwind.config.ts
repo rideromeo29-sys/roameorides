@@ -1,8 +1,15 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate"; // Modern import to prevent Vite crashes
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx,jsx,js}", 
+    "./components/**/*.{ts,tsx,jsx,js}", 
+    "./app/**/*.{ts,tsx,jsx,js}", 
+    "./src/**/*.{ts,tsx,jsx,js}",
+    "./index.html"
+  ],
   prefix: "",
   theme: {
     container: {
@@ -13,11 +20,14 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["Manrope", "sans-serif"],
-        serif: ["Noto Serif", "serif"],
-        headline: ["Manrope", "Noto Serif", "sans-serif"],
-        body: ["Manrope", "sans-serif"],
+     fontFamily: {
+        // Manrope for body text
+        sans: ['"Manrope"', 'system-ui', 'sans-serif'],
+        body: ['"Manrope"', 'system-ui', 'sans-serif'],
+        
+        // Hijacking the serif/headline utilities to use Poppins
+        serif: ['"Poppins"', 'system-ui', 'sans-serif'],
+        headline: ['"Poppins"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "#564337",
@@ -105,5 +115,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate], // Using the imported module!
 } satisfies Config;
