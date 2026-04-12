@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook, Heart } from "lucide-react";
 
 const quickLinks = [
   { to: "/", label: "Home" },
@@ -24,7 +24,6 @@ const Footer = () => (
 
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 mb-20">
       <Link to="/" className="flex items-center group">
-        {/* Footer Logo: Large Rounded Square */}
         <img 
           src="/logo.jpg" 
           alt="Roameo Logo" 
@@ -78,10 +77,28 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className="max-w-7xl mx-auto border-t border-white/5 pt-10">
+    <div className="max-w-7xl mx-auto border-t border-white/5 pt-10 flex flex-col gap-6 items-center">
       <p className="text-on-surface/20 text-[9px] uppercase tracking-[0.4em] text-center">
         © 2026 ROAMEO RIDES · JOURNEY INTO THE NIGHT
       </p>
+
+      {/* StaffArc Attribution */}
+      <div className="flex justify-center items-center gap-1 text-[11px] text-on-surface/40 uppercase tracking-widest">
+        Made with <Heart className="h-3 w-3 text-red-500/60 mx-1 fill-red-500/20" /> by
+        <a
+          href="https://staffarc.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-on-surface/60 hover:text-secondary transition-colors group"
+        >
+          <img
+            src="https://www.staffarc.in/images/Staffarc-logo.png"
+            alt="StaffArc logo"
+            className="h-4 w-4 object-contain opacity-50 group-hover:opacity-100 transition-opacity"
+          />
+          <span className="font-bold">StaffArc</span>
+        </a>
+      </div>
     </div>
   </footer>
 );
