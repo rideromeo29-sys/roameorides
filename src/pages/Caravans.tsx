@@ -49,11 +49,6 @@ const premiumFeatures = [
 ];
 
 const CaravansPage = () => {
-  // Smooth scroll handler
-  const scrollToAmenities = () => {
-    document.getElementById('amenities-section')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section */}
@@ -61,20 +56,15 @@ const CaravansPage = () => {
         <HeroSection
           image={heroCaravans}
           title={
-            <h1 className="font-sans tracking-[-0.03em] leading-[1.1] text-on-surface">
-              <span className="block text-4xl md:text-6xl lg:text-7xl font-[200] opacity-80">
-                Our Luxury
-              </span>
-              <span className="block text-5xl md:text-7xl lg:text-[5.5rem] font-[500]">
-                Fleet.
-              </span>
+            <h1 className="font-sans tracking-[-0.03em] leading-[1.1] text-on-surface whitespace-nowrap">
+              <span className="font-[200] opacity-80 text-2xl md:text-4xl lg:text-5xl">Our Luxury </span>
+              <span className="font-[500] text-2xl md:text-4xl lg:text-5xl">Fleet.</span>
             </h1>
           }
           subtitle="Every caravan, a moving palace."
           actions={[
             { label: "Book a Caravan", to: "/contact" },
-            // If your HeroSection doesn't accept onClick, we use a string hash to target the ID
-            { label: "View Features", to: "#amenities-section", variant: "outline" },
+            // "View Features" removed as requested
           ]}
         />
         <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-surface-low to-transparent z-10" />
@@ -225,7 +215,14 @@ const CaravansPage = () => {
       {/* CTA */}
       <section className="bg-primary-container py-12 px-6 md:px-16 relative overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
-          <h3 className="text-2xl md:text-4xl luxury-serif text-white">Ready for the road?</h3>
+          <motion.h3 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-4xl luxury-serif text-white"
+          >
+            Ready for the road?
+          </motion.h3>
           <Link
             to="/contact"
             className="bg-white text-primary-container font-bold px-10 py-4 rounded-full uppercase text-[10px] tracking-widest hover:scale-110 transition-transform shadow-xl"

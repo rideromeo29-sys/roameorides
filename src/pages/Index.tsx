@@ -6,7 +6,7 @@ import heroHome from "@/assets/hero-home.jpg";
 import fleetWanderer from "@/assets/fleet-wanderer.jpg";
 import fleetNomad from "@/assets/fleet-nomad.jpg";
 import fleetExplorer from "@/assets/fleet-explorer.jpg";
-import experienceCouple from "@/assets/experience-couple.jpg";
+import experienceCouple from "@/assets/couple.webp";
 import BookingForm from "@/components/BookingForm";
 import StarButton from "@/components/ui/star-button";
 import ImageAutoSlider from "@/components/ui/image-auto-slider";
@@ -40,6 +40,20 @@ const sliderImages = [
   { src: "/7.jpeg", alt: "Instagram feed image 6" },
 ];
 
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: "easeOut" }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.2 } },
+  viewport: { once: true }
+};
+
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -49,56 +63,84 @@ const Index = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <div>
-      {/* Hero Section with Rich Blend */}
+    <div className="overflow-x-hidden">
+      {/* Hero Section */}
       <section ref={heroRef} className="relative h-screen w-full flex items-center justify-start overflow-hidden top-0 left-0">
         <motion.div className="absolute inset-0 z-0" style={{ y: heroY }}>
-          <img src={heroHome} alt="Luxury caravan on mountain road" className="w-full h-full object-cover" width={1920} height={1080} />
+          <img src={heroHome} alt="Luxury caravan" className="w-full h-full object-cover scale-105" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
         </motion.div>
         
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 mt-20">
-          <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
-            <span className="block text-5xl md:text-6xl lg:text-7xl font-[200] text-on-surface/85 mb-1 md:mb-2">
-              Luxury caravan
-            </span>
-            <span className="block text-5xl md:text-6xl lg:text-7xl font-[500]">
-              Experiences in India.
-            </span>
-          </h1>
-          
-          <p className="text-on-surface/70 text-base md:text-xl font-light mb-10 max-w-2xl leading-relaxed tracking-wide">
-            Experience the wild in unparalleled luxury. Not just travel, it's Roameo—redefining the modern wayfarer's journey through the Indian road.
-          </p>
-          
-          <div className="flex flex-wrap gap-4 md:gap-6 items-center">
-            <StarButton to="/contact">Book Now</StarButton>
-            <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-8 md:px-10 py-3 md:py-4 rounded-full hover:scale-105 transition-transform uppercase text-[10px] md:text-xs tracking-widest font-semibold">
-              View Caravans
-            </Link>
-          </div>
+        {/* Adjusted padding to push text to the total left end */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-8 mt-20">
+          <motion.div 
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-[200] text-on-surface/85 mb-1 md:mb-2">
+                Luxury caravan
+              </span>
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-[500]">
+                Experiences in India.
+              </span>
+            </h1>
+            
+            <p className="text-on-surface/70 text-base md:text-xl font-light mb-10 max-w-2xl leading-relaxed tracking-wide">
+              Experience the wild in unparalleled luxury. Not just travel, it's Roameo—redefining the modern wayfarer's journey through the Indian road.
+            </p>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1, type: "spring", stiffness: 100 }}
+              className="flex flex-wrap gap-4 md:gap-6 items-center"
+            >
+              <StarButton to="/contact">Book Now</StarButton>
+              <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-on-surface hover:text-background transition-all uppercase text-[10px] md:text-xs tracking-widest font-semibold">
+                View Caravans
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* BOTTOM BLEND: Soft mix Hero with the Fleet Grid below */}
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-20" />
       </section>
 
-      {/* Our Fleet - Reduced space via tight top padding */}
+      {/* Our Fleet - Slide from Right */}
       <section className="bg-surface-low pt-12 pb-24 px-6 md:px-16 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-            <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface">
-              Our Fleet
-            </h2>
+          <motion.div 
+            {...fadeInUp}
+            className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16"
+          >
+            <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface">Our Fleet</h2>
             <p className="text-on-surface-variant text-sm max-w-md mt-4 md:mt-0 leading-relaxed">
               Hand-picked, custom-built mobile luxury suites designed for the rugged Indian terrain.
             </p>
-          </div>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {fleetCards.map((c) => (
-              <div key={c.title} className="bg-surface-container rounded-2xl overflow-hidden group hover:scale-[1.02] transition-transform duration-300 border border-white/5 shadow-xl">
+            {fleetCards.map((c, i) => (
+              <motion.div 
+                key={c.title} 
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.8, ease: "easeOut" }}
+                whileHover={{ y: -12 }}
+                className="bg-surface-container rounded-2xl overflow-hidden group border border-white/5 shadow-xl transition-all duration-500"
+              >
                 <div className="h-56 overflow-hidden">
-                  <img src={c.img} alt={c.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+                  <motion.img 
+                    src={c.img} 
+                    alt={c.title} 
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.8 }}
+                    className="w-full h-full object-cover" 
+                    loading="lazy" 
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="luxury-serif text-on-surface font-semibold text-lg mb-3">{c.title}</h3>
@@ -107,80 +149,136 @@ const Index = () => {
                       <span key={s} className="text-[10px] px-3 py-1 rounded-full bg-surface-high text-on-surface-variant uppercase tracking-widest font-semibold">{s}</span>
                     ))}
                   </div>
-                  <Link to={c.link} className="text-secondary text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+                  <Link to={c.link} className="text-secondary text-sm font-semibold flex items-center gap-1 group-hover:gap-3 transition-all">
                     View Details <ArrowRight size={14} />
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Curated Experiences */}
+      {/* Curated Experiences - Colored Hover */}
       <section className="bg-background py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="md:col-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="md:col-span-1"
+            >
               <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface mb-8">
                 Curated<br />Experiences
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 {experiences.map((e) => (
-                  <div key={e.title} className="bg-surface-container rounded-2xl p-5 hover:bg-surface-high transition-colors border border-white/5">
-                    <e.icon size={20} className="text-secondary mb-3" />
-                    <h4 className="text-on-surface text-sm font-semibold mb-1">{e.title}</h4>
-                    <p className="text-on-surface-variant text-xs leading-relaxed">{e.desc}</p>
-                  </div>
+                  <motion.div 
+                    key={e.title} 
+                    whileHover={{ 
+                      backgroundColor: "var(--secondary)", 
+                      color: "white",
+                      scale: 1.05,
+                      boxShadow: "0 20px 40px rgba(232, 119, 34, 0.3)"
+                    }}
+                    className="bg-surface-container rounded-2xl p-5 border border-white/5 transition-all duration-300 group cursor-pointer"
+                  >
+                    <e.icon size={20} className="text-secondary mb-3 group-hover:text-white transition-colors" />
+                    <h4 className="text-on-surface text-sm font-semibold mb-1 group-hover:text-white">{e.title}</h4>
+                    <p className="text-on-surface-variant text-xs leading-relaxed group-hover:text-white/80">{e.desc}</p>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-            <div className="md:col-span-2 h-[500px] rounded-2xl overflow-hidden relative group">
-              <img src={experienceCouple} alt="Curated experience" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-              {/* Image Blend Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-            </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="md:col-span-2 h-[500px] rounded-2xl overflow-hidden relative group shadow-2xl"
+            >
+              <img src={experienceCouple} alt="Curated experience" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose */}
+      {/* Why Choose - Fade Pop */}
       <section className="bg-surface-low py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="luxury-serif text-3xl md:text-4xl text-secondary mb-16">Why Choose Roameo Rides</h2>
-          <div className="gold-fade-divider max-w-xs mx-auto mb-16" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+            <h2 className="luxury-serif text-3xl md:text-4xl text-secondary mb-16 italic">Why Choose Roameo Rides</h2>
+            <div className="gold-fade-divider max-w-xs mx-auto mb-16" />
+          </motion.div>
+          
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10"
+          >
             {whyChoose.map((w) => (
-              <div key={w.title} className="flex flex-col items-center text-center">
-                <w.icon size={32} className="text-secondary mb-4" />
-                <h4 className="text-on-surface text-xs uppercase tracking-[0.15em] font-semibold mb-3">{w.title}</h4>
+              <motion.div 
+                key={w.title} 
+                variants={fadeInUp}
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="flex flex-col items-center text-center group"
+              >
+                <motion.div 
+                  whileHover={{ rotate: 15 }}
+                  className="text-secondary mb-4"
+                >
+                  <w.icon size={32} />
+                </motion.div>
+                <h4 className="text-on-surface text-xs uppercase tracking-[0.15em] font-semibold mb-3 group-hover:text-secondary transition-colors">{w.title}</h4>
                 <p className="text-on-surface-variant text-sm leading-relaxed">{w.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Follow Our Journey - Auto Slider */}
+      {/* Follow Our Journey */}
       <section className="bg-background py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-12">
+          <motion.div 
+            {...fadeInUp}
+            className="flex justify-between items-center mb-12"
+          >
             <h2 className="luxury-serif text-3xl text-on-surface">Follow Our Journey</h2>
             <a
               href="https://www.instagram.com/roameorides?igsh=N2MxZXkyd3ZkeXEw"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary text-sm font-semibold hover:text-primary transition-colors"
+              className="text-secondary text-sm font-semibold hover:tracking-widest transition-all"
             >
               @ROAMEORIDES
             </a>
-          </div>
-          <ImageAutoSlider images={sliderImages} />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
+          >
+            <ImageAutoSlider images={sliderImages} />
+          </motion.div>
         </div>
       </section>
 
-      {/* Booking Form */}
-      <BookingForm />
+      {/* Booking Form - Scroll Fade */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <BookingForm />
+      </motion.div>
     </div>
   );
 };

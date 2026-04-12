@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ScrollToTop from "./components/ScrollToTop";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import CaravansPage from "./pages/Caravans";
@@ -15,6 +16,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BrowserRouter>
+       <ScrollToTop />
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Index />} />

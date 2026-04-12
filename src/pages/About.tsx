@@ -20,7 +20,7 @@ const AboutPage = () => (
       <HeroSection
         image={heroAbout}
         title={
-          <h1 className="font-sans tracking-tight text-on-surface whitespace-nowrap text-[clamp(1.5rem,5vw,4.5rem)] leading-none">
+          <h1 className="font-sans tracking-tight text-on-surface whitespace-nowrap text-[clamp(1.1rem,3.5vw,3.15rem)] leading-none">
             Born from a Passion for <span className="luxury-serif italic text-secondary px-2">travel.</span>
           </h1>
         }

@@ -18,10 +18,10 @@ const ContactPage = () => (
         image={heroContact}
         title={
           <h1 className="font-sans tracking-[-0.03em] leading-[1.1] text-on-surface">
-            <span className="block text-4xl md:text-6xl lg:text-7xl font-[200] opacity-90">
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-[200] opacity-90">
               Let's Plan Your
             </span>
-            <span className="block text-5xl md:text-7xl lg:text-[5.5rem] font-[500]">
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-[500]">
               Journey.
             </span>
           </h1>

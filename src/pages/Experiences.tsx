@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import heroExperiences from "@/assets/hero-experiences.jpg";
-import experienceCouple from "@/assets/experience-couple.jpg";
+import experienceCouple from "@/assets/couple.webp";
 import experienceFamily from "@/assets/experience-family.jpg";
 import experienceCreator from "@/assets/experience-creator.jpg";
 import experienceCustom from "@/assets/experience-custom.jpg";
@@ -58,7 +58,7 @@ const ExperiencesPage = () => (
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-5xl md:text-7xl tracking-tighter leading-[1.1]"
+            className="text-4xl md:text-6xl tracking-tighter leading-[1.1]"
           >
             Experiences<br />Designed for Stories.
           </motion.div>
