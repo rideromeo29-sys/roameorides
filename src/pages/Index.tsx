@@ -1,27 +1,48 @@
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Heart, Users, Camera, Sparkles, Star, Headphones, Palette, MapPin } from "lucide-react";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import heroHome from "@/assets/hero-home.jpg";
-import fleetWanderer from "@/assets/fleet-wanderer.jpg";
-import fleetNomad from "@/assets/fleet-nomad.jpg";
-import fleetExplorer from "@/assets/fleet-explorer.jpg";
+import { 
+  Instagram, ArrowRight, Heart, Users, Camera, Sparkles, 
+  Star, Headphones, Palette, MapPin, Zap, MousePointerClick
+} from "lucide-react";
+import ShinyButton from "@/components/ui/shiny-button";
+import { AuroraButton } from "@/components/ui/aurora-button";
+
+import heroHome from "@/assets/homehero.png";
+import fleetWanderer from "@/assets/outer-front.jpeg";
+import fleetNomad from "@/assets/outer-side.jpeg";
+import fleetExplorer from "@/assets/outer-back.jpeg";
 import experienceCouple from "@/assets/couple.webp";
+
 import BookingForm from "@/components/BookingForm";
 import StarButton from "@/components/ui/star-button";
 import ImageAutoSlider from "@/components/ui/image-auto-slider";
 
-const fleetCards = [
-  { img: fleetWanderer, title: "The Wanderer Pro", specs: ["Queen Bed", "Smart TV", "Kitchen"], link: "/caravans" },
-  { img: fleetNomad, title: "Nomad Signature", specs: ["Bathroom", "Lounge", "AC", "WiFi"], link: "/caravans" },
-  { img: fleetExplorer, title: "Summit Explorer", specs: ["AC", "Solar", "Lounge", "Kitchen"], link: "/caravans" },
-];
+import innerEntrance from "@/assets/inner-entrance.jpeg";
+import innerBedroomDoor from "@/assets/inner-bedroom-door.jpeg";
 
+import washroom2 from "@/assets/washroom-2.jpeg";
+import dressingArea from "@/assets/dressing-area.jpeg"; 
+import mainSpace4Seat from "@/assets/main-space-4seat.jpeg";
+import mainSpaceRecliners from "@/assets/main-recliners.jpeg";
+import bedroomMain from "@/assets/bedroom-master.jpeg"; 
+import drivingSeat1 from "@/assets/driving-1.jpeg";
+import drivingSeat2 from "@/assets/driving-2.jpeg";
+
+// New Experience Assets
+import heroExperiences from "@/assets/hero-experiences.jpg";
+import templeImg from "@/assets/temple.jpg";
+import brideImg from "@/assets/bride.jpg";
+import productionImg from "@/assets/production.png";
+import corporateImg from "@/assets/main-space-4seat.jpeg";
+import leisureImg from "@/assets/homehero.png";
+
+// Data Configurations
 const experiences = [
-  { icon: Heart, title: "Couple Getaways", desc: "Intimate escapes to secluded cabins and star-lit plateaus." },
-  { icon: Users, title: "Family Trips", desc: "Bonding at the calmest retreats for everyone to remember." },
-  { icon: Camera, title: "Content Shoots", desc: "The perfect mobile studio for creators and fashion firms." },
-  { icon: Sparkles, title: "Custom Trips", desc: "Built to fit your imagination—any route, any time, anywhere." },
+  { icon: Heart, title: "Spiritual & Heritage", desc: "Sacred paths and temple tours in elevated, soulful comfort.", image: templeImg },
+  { icon: Sparkles, title: "Weddings & Events", desc: "A luxury bridal suite or intimate lounge for your big day.", image: brideImg },
+  { icon: Camera, title: "Film & Fashion", desc: "A mobile five-star green room for stars and content creators.", image: productionImg },
+  { icon: Users, title: "Corporate & VIP", desc: "Executive boardrooms that move with the mountain breeze.", image: corporateImg },
 ];
 
 const whyChoose = [
@@ -32,15 +53,23 @@ const whyChoose = [
 ];
 
 const sliderImages = [
-  { src: "/1.jpeg", alt: "Instagram feed image 1" },
-  { src: "/2.jpeg", alt: "Instagram feed image 2" },
-  { src: "/4.jpeg", alt: "Instagram feed image 3" },
-  { src: "/5.jpeg", alt: "Instagram feed image 4" },
-  { src: "/6.jpeg", alt: "Instagram feed image 5" },
-  { src: "/7.jpeg", alt: "Instagram feed image 6" },
+  { src: innerEntrance, alt: "Caravan Entrance Interior" },
+  { src: innerBedroomDoor, alt: "Bedroom Door Interior" },
+  { src: washroom2, alt: "Luxury Washroom" },
+  { src: dressingArea, alt: "Dressing Area" },
+  { src: mainSpace4Seat, alt: "Main Lounge 4 Seat Setup" },
+  { src: mainSpaceRecliners, alt: "Recliner Seating Area" },
+  { src: bedroomMain, alt: "Master Bedroom" },
+  { src: drivingSeat1, alt: "Driver Cabin View 1" },
+  { src: drivingSeat2, alt: "Driver Cabin View 2" },
 ];
 
-// Animation variants
+const teaserSlides = [
+  { src: fleetNomad, alt: "Caravan Exterior" },
+  { src: fleetWanderer, alt: "Caravan Interior" },
+  { src: fleetExplorer, alt: "Caravan Luxury Lounge" },
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -48,19 +77,25 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: "easeOut" }
 };
 
-const staggerContainer = {
-  initial: {},
-  whileInView: { transition: { staggerChildren: 0.2 } },
-  viewport: { once: true }
-};
-
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeExpImg, setActiveExpImg] = useState(experiences[0].image);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Parallax Scroll Logic
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+  // Teaser Slideshow Logic
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % teaserSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="overflow-x-hidden">
@@ -71,7 +106,6 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
         </motion.div>
         
-        {/* Adjusted padding to push text to the total left end */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-8 mt-20">
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
@@ -80,10 +114,10 @@ const Index = () => {
           >
             <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
               <span className="block text-3xl md:text-4xl lg:text-5xl font-[200] text-on-surface/85 mb-1 md:mb-2">
-                Luxury caravan
+                Exclusive Caravan
               </span>
               <span className="block text-3xl md:text-4xl lg:text-5xl font-[500]">
-                Experiences in India.
+                Extraordinory Experience.
               </span>
             </h1>
             
@@ -97,69 +131,91 @@ const Index = () => {
               transition={{ delay: 1, type: "spring", stiffness: 100 }}
               className="flex flex-wrap gap-4 md:gap-6 items-center"
             >
-              <StarButton to="/contact">Book Now</StarButton>
-              <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-on-surface hover:text-background transition-all uppercase text-[10px] md:text-xs tracking-widest font-semibold">
-                View Caravan
-              </Link>
+              <Link to="/contact">
+  <ShinyButton>
+   Book Now
+  </ShinyButton>
+</Link>
+              <Link to="/caravans">
+  <AuroraButton>
+    View Caravan
+  </AuroraButton>
+</Link>
             </motion.div>
           </motion.div>
         </div>
-
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-20" />
       </section>
 
-      {/* Our Fleet - Slide from Right */}
-      <section className="bg-surface-low pt-12 pb-24 px-6 md:px-16 relative z-10">
+      {/* NEW TEASER SECTION - Single Image Cross-Fade */}
+      <section className="bg-surface-low py-32 px-6 md:px-16 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            {...fadeInUp}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16"
-          >
-            <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface">Our Fleet</h2>
-            <p className="text-on-surface-variant text-sm max-w-md mt-4 md:mt-0 leading-relaxed">
-              Hand-picked, custom-built mobile luxury suites designed for the rugged Indian terrain.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {fleetCards.map((c, i) => (
-              <motion.div 
-                key={c.title} 
-                initial={{ opacity: 0, x: 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 0.8, ease: "easeOut" }}
-                whileHover={{ y: -12 }}
-                className="bg-surface-container rounded-2xl overflow-hidden group border border-white/5 shadow-xl transition-all duration-500"
-              >
-                <div className="h-56 overflow-hidden">
-                  <motion.img 
-                    src={c.img} 
-                    alt={c.title} 
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.8 }}
-                    className="w-full h-full object-cover" 
-                    loading="lazy" 
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            
+            {/* Image Side */}
+            <motion.div 
+              {...fadeInUp}
+              className="md:w-1/2 relative w-full"
+            >
+              <div className="absolute -top-12 -left-12 w-64 h-64 bg-[#E87722]/10 rounded-full blur-3xl" />
+              
+              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border border-white/5 aspect-[16/10] bg-surface-container">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentSlide}
+                    src={teaserSlides[currentSlide].src}
+                    alt={teaserSlides[currentSlide].alt}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
+                </AnimatePresence>
+
+                {/* Slide Indicators */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                  {teaserSlides.map((_, index) => (
+                    <div 
+                      key={index}
+                      className={`h-1 transition-all duration-500 rounded-full ${
+                        index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/30"
+                      }`}
+                    />
+                  ))}
                 </div>
-                <div className="p-6">
-                  <h3 className="luxury-serif text-on-surface font-semibold text-lg mb-3">{c.title}</h3>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {c.specs.map((s) => (
-                      <span key={s} className="text-[10px] px-3 py-1 rounded-full bg-surface-high text-on-surface-variant uppercase tracking-widest font-semibold">{s}</span>
-                    ))}
-                  </div>
-                  <Link to={c.link} className="text-secondary text-sm font-semibold flex items-center gap-1 group-hover:gap-3 transition-all">
-                    View Details <ArrowRight size={14} />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            {/* Content Side */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="md:w-1/2"
+            >
+              <span className="text-[#E87722] font-bold text-xs uppercase tracking-[0.3em] mb-4 block">
+                The Roameo Signature
+              </span>
+              <h2 className="luxury-serif text-4xl md:text-6xl text-on-surface mb-8 leading-tight">
+                A World-Class Home on Wheels.
+              </h2>
+              <p className="text-on-surface-variant text-lg mb-10 leading-relaxed">
+                Experience the freedom of the road without giving up the comforts of home. Our custom-designed caravans offer a premium travel experience across India, featuring a private luxury bedroom, grooming space, modern washrooms, and 24/7 support to ensure your journey is as smooth as it is beautiful.
+              </p>
+              
+              <Link to="/caravans">
+                <button className="group relative px-10 py-5 bg-on-surface text-background rounded-full font-bold uppercase text-xs tracking-[0.2em] overflow-hidden transition-all hover:pr-14">
+                  <span className="relative z-10">Step Inside the Caravan</span>
+                  <ArrowRight className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all" size={18} />
+                </button>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Curated Experiences - Colored Hover */}
+      {/* Curated Experiences */}
       <section className="bg-background py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -171,43 +227,74 @@ const Index = () => {
               className="md:col-span-1"
             >
               <h2 className="luxury-serif text-4xl md:text-5xl text-on-surface mb-8">
-                Curated<br />Experiences
+                Your Story,<br />Our Venue.
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 {experiences.map((e) => (
                   <motion.div 
                     key={e.title} 
+                    onMouseEnter={() => setActiveExpImg(e.image)}
+                    onClick={() => setActiveExpImg(e.image)}
                     whileHover={{ 
-                      backgroundColor: "var(--secondary)", 
-                      color: "white",
                       scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(232, 119, 34, 0.3)"
                     }}
-                    className="bg-surface-container rounded-2xl p-5 border border-white/5 transition-all duration-300 group cursor-pointer"
+                    // Removed yellow bg logic - stays default surface-container[cite: 7]
+                    className="rounded-2xl p-5 border border-white/5 transition-all duration-300 group cursor-pointer bg-surface-container"
                   >
-                    <e.icon size={20} className="text-secondary mb-3 group-hover:text-white transition-colors" />
-                    <h4 className="text-on-surface text-sm font-semibold mb-1 group-hover:text-white">{e.title}</h4>
-                    <p className="text-on-surface-variant text-xs leading-relaxed group-hover:text-white/80">{e.desc}</p>
+                    <e.icon size={20} className="mb-3 transition-colors text-secondary group-hover:text-[#E87722]" />
+                    <h4 className="text-sm font-semibold mb-1 text-on-surface group-hover:text-secondary">{e.title}</h4>
+                    <p className="text-[10px] leading-relaxed text-on-surface-variant group-hover:text-on-surface">{e.desc}</p>
                   </motion.div>
                 ))}
               </div>
+
+              {/* Small interaction note[cite: 7] */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-6 flex items-center gap-2 text-on-surface-variant/60"
+              >
+                <MousePointerClick size={14} className="animate-bounce" />
+                <span className="text-[10px] uppercase tracking-widest font-medium italic">
+                  Psst... hover or click a card to change the view!
+                </span>
+              </motion.div>
             </motion.div>
 
+            {/* Image Display Area */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="md:col-span-2 h-[500px] rounded-2xl overflow-hidden relative group shadow-2xl"
+              className="md:col-span-2 h-[500px] rounded-3xl overflow-hidden relative group shadow-2xl bg-surface-container"
             >
-              <img src={experienceCouple} alt="Curated experience" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <AnimatePresence mode="wait">
+                <motion.img 
+                  key={activeExpImg}
+                  src={activeExpImg} 
+                  alt="Curated experience" 
+                  initial={{ opacity: 0, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, filter: "blur(10px)" }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" 
+                  loading="lazy" 
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute bottom-10 left-10 opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
+                 <Link to="/experiences" className="text-white font-bold flex items-center gap-2 uppercase text-xs tracking-widest">
+                   Explore All Experiences <ArrowRight size={16} />
+                 </Link>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose - Fade Pop */}
+      {/* Why Choose Roameo Rides */}
       <section className="bg-surface-low py-24 px-6 md:px-16">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
@@ -215,31 +302,22 @@ const Index = () => {
             <div className="gold-fade-divider max-w-xs mx-auto mb-16" />
           </motion.div>
           
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
             {whyChoose.map((w) => (
               <motion.div 
                 key={w.title} 
-                variants={fadeInUp}
+                {...fadeInUp}
                 whileHover={{ y: -5, scale: 1.05 }}
                 className="flex flex-col items-center text-center group"
               >
-                <motion.div 
-                  whileHover={{ rotate: 15 }}
-                  className="text-secondary mb-4"
-                >
+                <motion.div whileHover={{ rotate: 15 }} className="text-secondary mb-4">
                   <w.icon size={32} />
                 </motion.div>
                 <h4 className="text-on-surface text-xs uppercase tracking-[0.15em] font-semibold mb-3 group-hover:text-secondary transition-colors">{w.title}</h4>
                 <p className="text-on-surface-variant text-sm leading-relaxed">{w.desc}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -255,9 +333,13 @@ const Index = () => {
               href="https://www.instagram.com/roameorides?igsh=N2MxZXkyd3ZkeXEw"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary text-sm font-semibold hover:tracking-widest transition-all"
+              className="group flex items-center gap-3 bg-secondary/10 hover:bg-secondary px-5 py-2.5 rounded-full transition-all duration-300"
             >
-              @ROAMEORIDES
+              <Instagram size={18} className="text-secondary group-hover:text-white transition-colors" />
+              <span className="text-on-surface group-hover:text-white text-xs font-bold tracking-widest uppercase transition-colors">
+                Follow @roameorides
+              </span>
+              <ArrowRight size={14} className="text-secondary group-hover:text-white opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
             </a>
           </motion.div>
           <motion.div
@@ -270,7 +352,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Booking Form - Scroll Fade */}
+      {/* Booking Form */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}

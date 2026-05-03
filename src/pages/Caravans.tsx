@@ -5,10 +5,10 @@ import {
   Armchair, Sparkles, MapPin, ArrowRight,MessageCircle
 } from "lucide-react";
 import { motion } from "framer-motion";
-
+import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
 // Components
 import CaravanHero from "@/components/CaravanHero";
-
+import ImageGallery from "@/components/ui/image-gallery";
 // Assets
 import outerFront from "@/assets/outer-front.jpeg";
 import outerSide from "@/assets/outer-side.jpeg";
@@ -25,8 +25,21 @@ import bedroomMain from "@/assets/bedroom-master.jpeg";
 import drivingSeat1 from "@/assets/driving-1.jpeg";
 import drivingSeat2 from "@/assets/driving-2.jpeg";
 import caravanVideo from "@/assets/caravan-reveal.MOV"; 
-import heroBg from "@/assets/outer-front.jpeg"; 
+import heroBg from "@/assets/outer-no-art.jpeg"; 
 
+
+const innerViewItems = [
+  { id: 1, title: "Master Suite", desc: "King-sized master bedroom with premium comfort.", url: bedroomMain, span: "md:col-span-2" },
+  { id: 2, title: "Luxury Recliners", desc: "Premium massage recliners for relaxation.", url: mainSpaceRecliners, span: "md:col-span-1" },
+  { id: 3, title: "Main Entrance", desc: "Welcoming teak-finish doorway.", url: innerEntrance, span: "md:col-span-1" },
+  { id: 4, title: "Dressing Studio", desc: "Dedicated vanity and storage area.", url: dressingArea, span: "md:col-span-1" },
+  { id: 5, title: "Dining Area", desc: "Spacious four-seat dining configuration.", url: mainSpace4Seat, span: "md:col-span-1" },
+  { id: 6, title: "Privacy Partition", desc: "Elegant divider for the master bedroom.", url: innerBedroomDoor, span: "md:col-span-1" },
+  { id: 7, title: "Shower Suite", desc: "Luxury fixtures with a hot shower.", url: washroom1, span: "md:col-span-1" },
+  { id: 8, title: "Premium Washroom", desc: "Detailed high-end bathroom finishes.", url: washroom2, span: "md:col-span-1" },
+  { id: 9, title: "Driver Cabin", desc: "The command center of your journey.", url: drivingSeat1, span: "md:col-span-1" },
+  { id: 10, title: "Captain's View", desc: "Full cockpit panoramic perspective.", url: drivingSeat2, span: "md:col-span-1" }
+];
 const amenities = [
     { icon: Snowflake, label: "1.5 Ton AC" },
     { icon: Tv, label: "42\" Smart TV" },
@@ -77,78 +90,68 @@ const CaravansPage = () => {
       </section>
 
       {/* OUTER VIEWS */}
-      <section className="pb-24 px-6 max-w-7xl mx-auto relative z-20">
-        <h3 className="text-2xl font-sans mb-10 text-stone-400 uppercase tracking-widest">Outer Views</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { img: outerFront, label: "Front Profile" },
-            { img: outerSide, label: "Side View" },
-            { img: outerBack, label: "Rear Design" },
-            { img: outerPlain, label: "Minimalist Exterior" }
-          ].map((item, idx) => (
-            <motion.div key={idx} whileHover={{ y: -10 }} className="group relative rounded-3xl overflow-hidden h-72 border border-white/5">
-              <img src={item.img} alt={item.label} className="w-full h-full object-cover" />
-              <HoverOverlay text={item.label} />
-            </motion.div>
-          ))}
-        </div>
-      </section>
+{/* OUTER VIEWS - Conditional Rendering */}
+<section className="pb-24 px-6 max-w-7xl mx-auto relative z-20">
+  <h3 className="text-2xl font-sans mb-10 text-stone-400 uppercase tracking-widest">
+    Outer Views
+  </h3>
 
-      {/* INNER VIEWS - ALL IMAGES INCLUDED */}
-      <section className="py-24 px-6 max-w-7xl mx-auto border-t border-white/5 relative z-20">
-        <h3 className="text-2xl font-sans mb-10 text-stone-400 uppercase tracking-widest">Inner Sanctuary</h3>
+  {/* DESKTOP: Interactive Image Gallery */}
+  <div className="hidden md:block">
+    <ImageGallery 
+      images={[
+        { img: outerFront, label: "Front Profile" },
+        { img: outerSide, label: "Side View" },
+        { img: outerBack, label: "Rear Design" },
+        { img: outerPlain, label: "Minimalist Exterior" }
+      ]} 
+    />
+  </div>
+
+  {/* MOBILE: Normal Vertical Stack (Full Image Visible) */}
+  <div className="md:hidden space-y-8">
+    {[
+      { img: outerFront, label: "Front Profile" },
+      { img: outerSide, label: "Side View" },
+      { img: outerBack, label: "Rear Design" },
+      { img: outerPlain, label: "Minimalist Exterior" }
+    ].map((item, idx) => (
+      <motion.div 
+        key={idx}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        whileTap={{ scale: 0.98 }} // Haptic feedback for mobile
+        className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5"
+      >
+        {/* Using aspect-[1448/1086] ensures the whole image is visible without cropping */}
+        <div className="aspect-[1448/1086] w-full">
+          <img 
+            src={item.img} 
+            alt={item.label} 
+            className="w-full h-full object-contain bg-black" 
+          />
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Main Feature */}
-          <div className="md:col-span-8 rounded-[2.5rem] overflow-hidden h-[500px] relative group border border-white/10">
-            <img src={bedroomMain} alt="Master Bedroom" className="w-full h-full object-cover" />
-            <HoverOverlay text="Master Suite" />
-          </div>
-          
-          <div className="md:col-span-4 space-y-6">
-            <div className="rounded-[2rem] overflow-hidden h-[238px] relative group border border-white/10">
-              <img src={mainSpaceRecliners} alt="Recliners" className="w-full h-full object-cover" />
-              <HoverOverlay text="Luxury Recliners" />
-            </div>
-            <div className="rounded-[2rem] overflow-hidden h-[238px] relative group border border-white/10">
-              <img src={dressingArea} alt="Dressing Area" className="w-full h-full object-cover" />
-              <HoverOverlay text="Dressing Studio" />
-            </div>
-          </div>
-
-          {/* Secondary Grid */}
-          <div className="md:col-span-4 rounded-3xl overflow-hidden h-72 relative group border border-white/10">
-            <img src={mainSpace4Seat} alt="Dining" className="w-full h-full object-cover" />
-            <HoverOverlay text="Dining Area" />
-          </div>
-          <div className="md:col-span-4 rounded-3xl overflow-hidden h-72 relative group border border-white/10">
-            <img src={innerEntrance} alt="Entrance" className="w-full h-full object-cover" />
-            <HoverOverlay text="Main Entrance" />
-          </div>
-          <div className="md:col-span-4 rounded-3xl overflow-hidden h-72 relative group border border-white/10">
-            <img src={innerBedroomDoor} alt="Bedroom Privacy" className="w-full h-full object-cover" />
-            <HoverOverlay text="Privacy Partition" />
-          </div>
-
-          {/* Utilities & Driving */}
-          <div className="md:col-span-3 rounded-2xl overflow-hidden h-56 relative group border border-white/10">
-            <img src={washroom1} alt="Bath" className="w-full h-full object-cover" />
-            <HoverOverlay text="Premium Washroom" />
-          </div>
-          <div className="md:col-span-3 rounded-2xl overflow-hidden h-56 relative group border border-white/10">
-            <img src={washroom2} alt="Bath Detail" className="w-full h-full object-cover" />
-            <HoverOverlay text="Shower Suite" />
-          </div>
-          <div className="md:col-span-3 rounded-2xl overflow-hidden h-56 relative group border border-white/10">
-            <img src={drivingSeat1} alt="Cockpit" className="w-full h-full object-cover" />
-            <HoverOverlay text="Driver Cabin" />
-          </div>
-          <div className="md:col-span-3 rounded-2xl overflow-hidden h-56 relative group border border-white/10">
-            <img src={drivingSeat2} alt="Cockpit Full" className="w-full h-full object-cover" />
-            <HoverOverlay text="Captain's View" />
-          </div>
+        {/* Persistent Label for Mobile */}
+        <div className="p-4 bg-stone-900/50 backdrop-blur-sm border-t border-white/5">
+          <span className="text-orange-500 font-bold uppercase tracking-widest text-[10px]">
+            {item.label}
+          </span>
         </div>
-      </section>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
+      {/* INNER VIEWS SECTION - Unified Bento for all devices */}
+<section className="border-t border-white/5 bg-[#0a0a0a]">
+  <InteractiveImageBentoGallery 
+    imageItems={innerViewItems}
+    title="Inner Sanctuary"
+    description="A masterfully crafted interior designed for luxury on the move. Use arrows or swipe to explore."
+  />
+</section>
 
       {/* AMENITIES STRIP - MATCHING REFERENCE UI */}
       <section id="amenities-section" className="bg-[#0a0a0a] py-24 px-6 border-y border-white/5 relative z-20">
@@ -198,7 +201,7 @@ const CaravansPage = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl luxury-serif text-white tracking-tight"
+            className="text-3xl md:text-3xl luxury-serif text-white tracking-tight"
           >
             Ready for the road?
           </motion.h3>

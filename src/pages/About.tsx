@@ -24,7 +24,7 @@ const AboutPage = () => (
             Born from a Passion for <span className="luxury-serif italic text-secondary px-2">travel.</span>
           </h1>
         }
-        subtitle="We don't just offer caravans — we create unforgettable experiences."
+        subtitle="We don't just offer a caravan — we create unforgettable experiences."
       />
       {/* Rich Blend Overlay to remove the sharp line */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-low to-transparent z-10" />

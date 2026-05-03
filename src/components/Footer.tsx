@@ -3,25 +3,27 @@ import { Instagram, Facebook, Heart } from "lucide-react";
 
 const quickLinks = [
   { to: "/", label: "Home" },
-  { to: "/caravans", label: "Caravans" },
+  { to: "/caravans", label: "Our Caravans" },
   { to: "/experiences", label: "Experiences" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { to: "/about", label: "The Roameo Story" },
+  { to: "/contact", label: "Contact Us" },
 ];
 
-const services = [
-  "Caravan Rentals",
-  "Couple Getaways",
-  "Family Trips",
-  "Content Shoots",
-  "Custom Trips",
-  "Brand Collabs",
+const experiences = [
+  "Destination Weddings",
+  "Film Production Support",
+  "Corporate Retreats",
+  "Luxury Couple Getaways",
+  "Family Expeditions",
+  "Content Creator Hub",
 ];
 
 const Footer = () => (
   <footer className="bg-surface-lowest pt-24 pb-12 px-6 md:px-16">
+    {/* Decorative Gold Divider */}
     <div className="gold-fade-divider max-w-7xl mx-auto mb-16" />
 
+    {/* Brand Identity Section */}
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10 mb-20">
       <Link to="/" className="flex items-center group">
         <img 
@@ -46,6 +48,7 @@ const Footer = () => (
       </div>
     </div>
 
+    {/* Information Grid */}
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
       <div>
         <h4 className="text-secondary text-xs font-bold uppercase tracking-[0.25em] mb-8">Navigation</h4>
@@ -59,10 +62,16 @@ const Footer = () => (
       </div>
 
       <div>
-        <h4 className="text-secondary text-xs font-bold uppercase tracking-[0.25em] mb-8">Services</h4>
+        <h4 className="text-secondary text-xs font-bold uppercase tracking-[0.25em] mb-8">Curated Experiences</h4>
         <div className="flex flex-col space-y-5">
-          {services.map((s) => (
-            <span key={s} className="text-on-surface/70 font-light text-sm hover:text-secondary cursor-default transition-colors tracking-wide">{s}</span>
+          {experiences.map((s) => (
+            <Link 
+              key={s} 
+              to="/experiences" 
+              className="text-on-surface/70 font-light text-sm hover:text-secondary transition-colors tracking-wide"
+            >
+              {s}
+            </Link>
           ))}
         </div>
       </div>
@@ -77,6 +86,7 @@ const Footer = () => (
       </div>
     </div>
 
+    {/* Bottom Bar & Legal */}
     <div className="max-w-7xl mx-auto border-t border-white/5 pt-10 flex flex-col gap-6 items-center">
       <p className="text-on-surface/20 text-[9px] uppercase tracking-[0.4em] text-center">
         © 2026 ROAMEO RIDES · JOURNEY INTO THE NIGHT
