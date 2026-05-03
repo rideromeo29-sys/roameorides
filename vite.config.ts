@@ -12,11 +12,23 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  // Added to handle video file formats as static assets
+  assetsInclude: ['**/*.MOV', '**/*.mov', '**/*.mp4'], 
+  plugins: [
+    react(), 
+    mode === "development" && componentTagger()
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
+    dedupe: [
+      "react", 
+      "react-dom", 
+      "react/jsx-runtime", 
+      "react/jsx-dev-runtime", 
+      "@tanstack/react-query", 
+      "@tanstack/query-core"
+    ],
   },
 }));

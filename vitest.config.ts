@@ -4,6 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  assetsInclude: ['**/*.MOV', '**/*.mov', '**/*.mp4'],
   test: {
     environment: "jsdom",
     globals: true,

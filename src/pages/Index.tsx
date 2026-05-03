@@ -99,7 +99,7 @@ const Index = () => {
             >
               <StarButton to="/contact">Book Now</StarButton>
               <Link to="/caravans" className="border border-on-surface-variant text-on-surface px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-on-surface hover:text-background transition-all uppercase text-[10px] md:text-xs tracking-widest font-semibold">
-                View Caravans
+                View Caravan
               </Link>
             </motion.div>
           </motion.div>
