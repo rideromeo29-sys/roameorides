@@ -13,7 +13,7 @@ import ImageGallery from "@/components/ui/image-gallery";
 import outerFront from "@/assets/outer-front.jpeg";
 import outerSide from "@/assets/outer-side.jpeg";
 import outerBack from "@/assets/outer-back.jpeg";
-import outerPlain from "@/assets/outer-no-art.jpeg";
+import outerPlain from "@/assets/homehero.png";
 import innerEntrance from "@/assets/inner-entrance.jpeg";
 import innerBedroomDoor from "@/assets/inner-bedroom-door.jpeg";
 import washroom1 from "@/assets/washroom-1.jpeg";
@@ -26,6 +26,10 @@ import drivingSeat1 from "@/assets/driving-1.jpeg";
 import drivingSeat2 from "@/assets/driving-2.jpeg";
 import caravanVideo from "@/assets/caravan-reveal.MOV"; 
 import heroBg from "@/assets/outer-no-art.jpeg"; 
+import sofa from "@/assets/1sofa.jpeg";
+import view from "@/assets/reclinerview.jpeg";
+import threerecliners from "@/assets/3recliners.jpeg";
+import reclinerback from "@/assets/reclinerback.jpeg";
 
 
 const innerViewItems = [
@@ -38,7 +42,35 @@ const innerViewItems = [
   { id: 7, title: "Shower Suite", desc: "Luxury fixtures with a hot shower.", url: washroom1, span: "md:col-span-1" },
   { id: 8, title: "Premium Washroom", desc: "Detailed high-end bathroom finishes.", url: washroom2, span: "md:col-span-1" },
   { id: 9, title: "Driver Cabin", desc: "The command center of your journey.", url: drivingSeat1, span: "md:col-span-1" },
-  { id: 10, title: "Captain's View", desc: "Full cockpit panoramic perspective.", url: drivingSeat2, span: "md:col-span-1" }
+  { id: 10, title: "Captain's View", desc: "Full cockpit panoramic perspective.", url: drivingSeat2, span: "md:col-span-1" },
+  { 
+    id: 11, 
+    title: "Plush Lounge Sofa", 
+    desc: "Convertible luxury seating with ergonomic support.", 
+    url: sofa, 
+    span: "md:col-span-2" 
+  },
+  { 
+    id: 12, 
+    title: "Executive Cabin", 
+    desc: "Spacious interior featuring triple premium recliners.", 
+    url: threerecliners, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 13, 
+    title: "Premium Finishes", 
+    desc: "Detailed craftsmanship on every leather surface.", 
+    url: reclinerback, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 14, 
+    title: "Panoramic Interior", 
+    desc: "A full view of the luxury lounge and ambient lighting.", 
+    url: view, 
+    span: "md:col-span-1" 
+  },
 ];
 const amenities = [
     { icon: Snowflake, label: "1.5 Ton AC" },

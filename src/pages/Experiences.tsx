@@ -78,7 +78,7 @@ const ExperiencesPage = () => (
         subtitle="From sacred temple tours to high-fashion film shoots — every Roameo journey is a masterpiece."
         actions={[
           { label: "Plan Your Experience", to: "/contact" },
-          { label: "Explore Caravans", to: "/caravans", variant: "outline" },
+          { label: "Explore Caravan", to: "/caravans", variant: "outline" },
         ]}
       />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-10" />
@@ -133,26 +133,26 @@ const ExperiencesPage = () => (
 
     {/* Quote & CTA */}
     <section className="bg-surface-lowest py-24 px-6 text-center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="font-serif text-3xl md:text-5xl text-on-surface italic max-w-3xl mx-auto mb-8 leading-tight">
-          "Every road journey is a story. Let's write yours with luxury."
-        </h2>
-        <a
-          href="https://wa.me/919469456789"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[#E87722] text-white font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform shadow-lg"
-        >
-          <MessageCircle size={18} />
-          Book Your Experience
-        </a>
-      </motion.div>
-    </section>
+  <motion.div
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+  >
+    <h2 className="font-serif text-3xl md:text-5xl text-on-surface italic max-w-3xl mx-auto mb-8 leading-tight">
+      "Every road journey is a story. Let's write yours with luxury."
+    </h2>
+    
+    {/* Updated to use Link for internal routing */}
+    <Link
+      to="/contact"
+      className="inline-flex items-center gap-2 bg-[#E87722] text-white font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-105 transition-transform shadow-lg"
+    >
+      <MessageCircle size={18} />
+      Book Your Experience
+    </Link>
+  </motion.div>
+</section>
   </div>
 );
 

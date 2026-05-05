@@ -30,7 +30,8 @@ const ContactPage = () => (
       />
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-10" />
     </div>
-
+    
+    <BookingForm />
     {/* Contact Details */}
     <section className="bg-surface-low py-24 px-6 md:px-16">
       <div className="max-w-4xl mx-auto bg-surface-container rounded-2xl p-8 md:p-12 border border-white/5 shadow-xl">
@@ -79,7 +80,7 @@ const ContactPage = () => (
     </section>
 
     {/* Booking Form */}
-    <BookingForm />
+    
 
     {/* Social */}
     <section className="bg-surface-lowest py-16 px-6 text-center">
