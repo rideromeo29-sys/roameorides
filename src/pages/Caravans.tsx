@@ -25,7 +25,7 @@ import bedroomMain from "@/assets/bedroom-master.jpeg";
 import drivingSeat1 from "@/assets/driving-1.jpeg";
 import drivingSeat2 from "@/assets/driving-2.jpeg";
 import caravanVideo from "@/assets/caravan-reveal.MOV"; 
-import heroBg from "@/assets/outer-no-art.jpeg"; 
+import heroBg from "@/assets/out2.jpeg"; 
 import sofa from "@/assets/1sofa.jpeg";
 import view from "@/assets/reclinerview.jpeg";
 import threerecliners from "@/assets/3recliners.jpeg";
