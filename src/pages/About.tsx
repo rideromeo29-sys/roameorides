@@ -1,6 +1,10 @@
 import { MessageCircle, Truck, Map, Calendar, Heart, Users as UsersIcon, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+// Import HashLink for cross-page smooth scrolling
+import { HashLink } from "react-router-hash-link"; 
 import HeroSection from "@/components/HeroSection";
+
+// Assets
 import heroAbout from "@/assets/hero-about.jpg";
 import aboutStory from "@/assets/about-story.jpg";
 
@@ -15,7 +19,7 @@ const offers = [
 
 const AboutPage = () => (
   <div className="overflow-hidden">
-    {/* Hero Section with Bottom Blend */}
+    {/* Hero Section */}
     <div className="relative">
       <HeroSection
         image={heroAbout}
@@ -26,11 +30,10 @@ const AboutPage = () => (
         }
         subtitle="We don't just offer a caravan — we create unforgettable experiences."
       />
-      {/* Rich Blend Overlay to remove the sharp line */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-low to-transparent z-10" />
     </div>
 
-    {/* Brand Story */}
+    {/* Brand Story Section */}
     <section className="bg-surface-low py-24 px-6 md:px-16 relative z-0">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <motion.div 
@@ -69,7 +72,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* What We Offer */}
+    {/* What We Offer Section */}
     <section className="bg-background py-24 px-6 md:px-16">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -100,7 +103,7 @@ const AboutPage = () => (
       </div>
     </section>
 
-    {/* CTA */}
+    {/* Final CTA - Redirects to Contact Page Form */}
     <section className="bg-surface-lowest py-24 px-6 text-center relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -110,15 +113,16 @@ const AboutPage = () => (
       >
         <h2 className="luxury-serif text-3xl md:text-5xl text-on-surface mb-4">Start Your Roameo Story.</h2>
         <p className="text-on-surface-variant font-light mb-8 italic">Every journey begins with a single message.</p>
-        <a
-          href="https://wa.me/919469456789"
-          target="_blank"
-          rel="noopener noreferrer"
+        
+        {/* Updated CTA to redirect and auto-scroll on the Contact Page */}
+        <HashLink
+          smooth
+          to="/contact#booking-form"
           className="inline-flex items-center gap-2 bg-primary-container text-white font-bold px-10 py-4 rounded-full uppercase text-sm tracking-widest hover:scale-110 transition-transform shadow-[0_0_30px_rgba(232,119,34,0.2)]"
         >
           <MessageCircle size={18} />
-          Book on WhatsApp
-        </a>
+          Book Your Journey
+        </HashLink>
       </motion.div>
     </section>
   </div>

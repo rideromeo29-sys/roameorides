@@ -4,15 +4,35 @@ import BookingForm from "@/components/BookingForm";
 import heroContact from "@/assets/hero-contact.jpg";
 
 const contactDetails = [
-  { icon: Phone, label: "Call Us", value: "9469456789" },
-  { icon: Mail, label: "Email Us", value: "Roameorides@gmail.com" },
-  { icon: MapPin, label: "Location", value: "Survey No 719, TSIIC 100, Ft Road,\nIbrahimpatnam, Telangana 501510" },
-  { icon: Clock, label: "Concierge Hours", value: "Open 365 Days · 24/7" },
+  { 
+    icon: Phone, 
+    label: "Call Us", 
+    value: "9469456789", 
+    href: "tel:+919469456789" 
+  },
+  { 
+    icon: Mail, 
+    label: "Email Us", 
+    value: "Roameorides@gmail.com", 
+    href: "mailto:Roameorides@gmail.com" 
+  },
+  { 
+    icon: MapPin, 
+    label: "Location", 
+    value: "Survey No 719, TSIIC 100, Ft Road,\nIbrahimpatnam, Telangana 501510", 
+    href: "https://www.google.com/maps/dir/?api=1&destination=Ibrahimpatnam,Telangana+501510" 
+  },
+  { 
+    icon: Clock, 
+    label: "Concierge Hours", 
+    value: "Open 365 Days · 24/7",
+    href: null // No link for hours
+  },
 ];
 
 const ContactPage = () => (
   <div className="overflow-hidden">
-    {/* Hero Section with Rich Blend */}
+    {/* Hero Section */}
     <div className="relative">
       <HeroSection
         image={heroContact}
@@ -31,8 +51,11 @@ const ContactPage = () => (
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-10" />
     </div>
     
-    <BookingForm />
-    {/* Contact Details */}
+    <section id="booking-form" className="scroll-mt-12 lg:scroll-mt-24">
+      <BookingForm />
+    </section>
+
+    {/* Contact Details Grid */}
     <section className="bg-surface-low py-24 px-6 md:px-16">
       <div className="max-w-4xl mx-auto bg-surface-container rounded-2xl p-8 md:p-12 border border-white/5 shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -43,7 +66,22 @@ const ContactPage = () => (
               </div>
               <div>
                 <h4 className="text-[10px] uppercase tracking-[0.2em] text-on-surface font-bold mb-1">{d.label}</h4>
-                <p className="text-on-surface-variant text-sm whitespace-pre-line font-light">{d.value}</p>
+                
+                {/* Conditional Rendering: Use <a> if href exists, otherwise use <p> */}
+                {d.href ? (
+                  <a 
+                    href={d.href} 
+                    target={d.icon === MapPin ? "_blank" : undefined}
+                    rel={d.icon === MapPin ? "noopener noreferrer" : undefined}
+                    className="text-on-surface-variant text-sm whitespace-pre-line font-light hover:text-secondary transition-colors block"
+                  >
+                    {d.value}
+                  </a>
+                ) : (
+                  <p className="text-on-surface-variant text-sm whitespace-pre-line font-light">
+                    {d.value}
+                  </p>
+                )}
               </div>
             </div>
           ))}
@@ -51,7 +89,7 @@ const ContactPage = () => (
         <div className="gold-fade-divider my-8" />
         <div className="flex justify-center">
           <a
-            href="https://wa.me/9469456789?text=Hi%20Roameo%20Rides!%20I'm%20looking%20for%20a%20premium%20caravan%20experience."
+            href="https://wa.me/919469456789?text=Hi%20Roameo%20Rides!%20I'm%20looking%20for%20a%20premium%20caravan%20experience."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-primary-container text-white font-bold px-10 py-4 rounded-full uppercase text-xs tracking-widest hover:scale-105 transition-transform shadow-lg"
@@ -63,7 +101,7 @@ const ContactPage = () => (
       </div>
     </section>
 
-    {/* Embedded Google Map - Ibrahimpatnam Location */}
+    {/* Embedded Google Map */}
     <section className="bg-background py-16 px-6 md:px-16">
       <div className="max-w-5xl mx-auto h-96 rounded-2xl overflow-hidden border border-white/5 shadow-2xl">
         <iframe
@@ -79,17 +117,14 @@ const ContactPage = () => (
       </div>
     </section>
 
-    {/* Booking Form */}
-    
-
-    {/* Social */}
+    {/* Social Media Links */}
     <section className="bg-surface-lowest py-16 px-6 text-center">
       <h3 className="luxury-serif text-on-surface text-xl mb-6">Connect with us on social media</h3>
       <div className="flex justify-center gap-4">
-        <a href="https://www.instagram.com/roameorides?igsh=N2MxZXkyd3ZkeXEw" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-secondary transition-all text-xs font-bold uppercase tracking-widest border border-white/5">
+        <a href="https://www.instagram.com/roameorides" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-secondary transition-all text-xs font-bold uppercase tracking-widest border border-white/5">
           <Instagram size={16} /> Instagram
         </a>
-        <a href="https://www.facebook.com/share/1JfHxxoCVT/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-secondary transition-all text-xs font-bold uppercase tracking-widest border border-white/5">
+        <a href="https://www.facebook.com/roameorides" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-surface-container px-6 py-3 rounded-full text-on-surface-variant hover:text-secondary transition-all text-xs font-bold uppercase tracking-widest border border-white/5">
           <Facebook size={16} /> Facebook
         </a>
       </div>

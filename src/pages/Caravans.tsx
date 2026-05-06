@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { HashLink } from "react-router-hash-link";
+
 import { Link } from "react-router-dom";
 import { 
   Snowflake, Bed, Tv, UtensilsCrossed, Bath, 
@@ -30,48 +32,117 @@ import sofa from "@/assets/1sofa.jpeg";
 import view from "@/assets/reclinerview.jpeg";
 import threerecliners from "@/assets/3recliners.jpeg";
 import reclinerback from "@/assets/reclinerback.jpeg";
-
+import bed from "@/assets/bed.png"
 
 const innerViewItems = [
-  { id: 1, title: "Master Suite", desc: "King-sized master bedroom with premium comfort.", url: bedroomMain, span: "md:col-span-2" },
-  { id: 2, title: "Luxury Recliners", desc: "Premium massage recliners for relaxation.", url: mainSpaceRecliners, span: "md:col-span-1" },
-  { id: 3, title: "Main Entrance", desc: "Welcoming teak-finish doorway.", url: innerEntrance, span: "md:col-span-1" },
-  { id: 4, title: "Dressing Studio", desc: "Dedicated vanity and storage area.", url: dressingArea, span: "md:col-span-1" },
-  { id: 5, title: "Dining Area", desc: "Spacious four-seat dining configuration.", url: mainSpace4Seat, span: "md:col-span-1" },
-  { id: 6, title: "Privacy Partition", desc: "Elegant divider for the master bedroom.", url: innerBedroomDoor, span: "md:col-span-1" },
-  { id: 7, title: "Shower Suite", desc: "Luxury fixtures with a hot shower.", url: washroom1, span: "md:col-span-1" },
-  { id: 8, title: "Premium Washroom", desc: "Detailed high-end bathroom finishes.", url: washroom2, span: "md:col-span-1" },
-  { id: 9, title: "Driver Cabin", desc: "The command center of your journey.", url: drivingSeat1, span: "md:col-span-1" },
-  { id: 10, title: "Captain's View", desc: "Full cockpit panoramic perspective.", url: drivingSeat2, span: "md:col-span-1" },
   { 
-    id: 11, 
-    title: "Plush Lounge Sofa", 
-    desc: "Convertible luxury seating with ergonomic support.", 
-    url: sofa, 
-    span: "md:col-span-2" 
+    id: 1, 
+    title: "Main Entrance", 
+    desc: "Welcoming teak-finish doorway with ambient lighting.", 
+    url: innerEntrance, 
+    span: "md:col-span-1" 
   },
   { 
-    id: 12, 
+    id: 2, 
     title: "Executive Cabin", 
     desc: "Spacious interior featuring triple premium recliners.", 
     url: threerecliners, 
     span: "md:col-span-1" 
   },
   { 
-    id: 13, 
-    title: "Premium Finishes", 
-    desc: "Detailed craftsmanship on every leather surface.", 
-    url: reclinerback, 
+    id: 3, 
+    title: "Dining Area", 
+    desc: "Spacious four-seat dining configuration.", 
+    url: mainSpace4Seat, 
     span: "md:col-span-1" 
   },
   { 
-    id: 14, 
+    id: 4, 
+    title: "Dressing Studio", 
+    desc: "Dedicated vanity and storage area with premium finishes.", 
+    url: dressingArea, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 8, 
+    title: "Privacy Partition", 
+    desc: "Elegant divider leading to the master suite.", 
+    url: innerBedroomDoor, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 6, 
     title: "Panoramic Interior", 
     desc: "A full view of the luxury lounge and ambient lighting.", 
     url: view, 
     span: "md:col-span-1" 
   },
+   { 
+    id: 7, 
+    title: "Luxury Recliners", 
+    desc: "Premium massage recliners for maximum relaxation.", 
+    url: mainSpaceRecliners, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 5, 
+    title: "Entertainment Hub", 
+    desc: "High-definition viewing area for a cinema-on-wheels experience.", 
+    url: reclinerback, 
+    span: "md:col-span-1" 
+  },
+   
+  { 
+    id: 9, 
+    title: "Plush Lounge Sofa", 
+    desc: "Convertible luxury seating with ergonomic support.", 
+    url: sofa, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 10, 
+    title: "Master Bedroom", 
+    desc: "King-sized master bed with premium comfort and smart storage.", 
+    url: bed, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 11, 
+    title: "Master Suite", 
+    desc: "A full view of the master bedroom suite.", 
+    url: bedroomMain, 
+    span: "md:col-span-2" 
+  },
+  { 
+    id: 12, 
+    title: "Premium Washroom", 
+    desc: "Detailed high-end bathroom finishes.", 
+    url: washroom2, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 13, 
+    title: "Shower Suite", 
+    desc: "Luxury fixtures with a hot shower.", 
+    url: washroom1, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 14, 
+    title: "Captain's View", 
+    desc: "Full cockpit panoramic perspective.", 
+    url: drivingSeat2, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 15, 
+    title: "Driver Cabin", 
+    desc: "The command center of your journey.", 
+    url: drivingSeat1, 
+    span: "md:col-span-1" 
+  },
 ];
+
 const amenities = [
     { icon: Snowflake, label: "1.5 Ton AC" },
     { icon: Tv, label: "42\" Smart TV" },
@@ -245,14 +316,14 @@ const CaravansPage = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link
-              to="/contact"
+            <HashLink
+              smooth
+              to="/contact#booking-form"
               className="bg-white text-primary-container font-bold px-12 py-5 rounded-full uppercase text-[10px] tracking-[0.2em] flex items-center gap-3 shadow-2xl transition-colors hover:bg-stone-100"
             >
-              {/* Added WhatsApp icon/MessageCircle if you want to match the reference exactly */}
               <MessageCircle size={18} />
               Book Now on WhatsApp
-            </Link>
+            </HashLink>
           </motion.div>
         </div>
       </section>

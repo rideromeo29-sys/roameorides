@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link"; // Added import
 
 interface HeroSectionProps {
   image: string;
   title: React.ReactNode;
   subtitle?: string;
-  actions?: { label: string; to?: string; variant?: "primary" | "outline" }[];
+  // Updated actions type to include isHash
+  actions?: { 
+    label: string; 
+    to?: string; 
+    variant?: "primary" | "outline";
+    isHash?: boolean; 
+  }[];
   height?: string;
 }
 
@@ -19,25 +26,37 @@ const HeroSection = ({ image, title, subtitle, actions, height = "h-[70vh]" }: H
       {subtitle && <p className="text-on-surface-variant text-lg md:text-xl font-light mb-8 italic">{subtitle}</p>}
       {actions && (
         <div className="flex flex-wrap gap-4 justify-center">
-          {actions.map((a) =>
-            a.variant === "outline" ? (
+          {actions.map((a) => {
+            const isOutline = a.variant === "outline";
+            const baseStyles = isOutline 
+              ? "border border-on-surface-variant text-on-surface px-8 py-3.5 rounded-full hover:scale-105 transition-transform uppercase text-xs tracking-widest font-semibold"
+              : "bg-[#E87722] text-white px-8 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(232,119,34,0.4)] hover:scale-105 transition-all uppercase text-xs tracking-widest font-bold shadow-xl";
+
+            // If it's a hash link, use HashLink with the smooth prop
+            if (a.isHash) {
+              return (
+                <HashLink
+                  key={a.label}
+                  smooth
+                  to={a.to || "#"}
+                  className={baseStyles}
+                >
+                  {a.label}
+                </HashLink>
+              );
+            }
+
+            // Standard navigation
+            return (
               <Link
                 key={a.label}
                 to={a.to || "#"}
-                className="border border-on-surface-variant text-on-surface px-8 py-3.5 rounded-full hover:scale-105 transition-transform uppercase text-xs tracking-widest font-semibold"
+                className={baseStyles}
               >
                 {a.label}
               </Link>
-            ) : (
-              <Link
-                key={a.label}
-                to={a.to || "#"}
-                className="bg-[#E87722] text-white px-8 py-3.5 rounded-full hover:shadow-[0_0_20px_rgba(232,119,34,0.4)] hover:scale-105 transition-all uppercase text-xs tracking-widest font-bold shadow-xl"
-              >
-                {a.label}
-              </Link>
-            )
-          )}
+            );
+          })}
         </div>
       )}
     </div>

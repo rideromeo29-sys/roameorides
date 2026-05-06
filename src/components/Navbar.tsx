@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { HashLink } from 'react-router-hash-link';
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -77,12 +78,13 @@ const Navbar = () => {
         })}
       </div>
 
-      <Link
-        to="/contact"
-        className="bg-accent text-white font-bold px-8 py-3.5 rounded-full hover:shadow-[0_0_25px_rgba(232,119,34,0.5)] transition-all uppercase text-xs tracking-widest"
-      >
-        Book Now
-      </Link>
+     <HashLink
+  smooth
+  to="/contact#booking-form"
+  className="bg-accent text-white font-bold px-8 py-3.5 rounded-full hover:shadow-[0_0_25px_rgba(232,119,34,0.5)] transition-all uppercase text-xs tracking-widest"
+>
+  Book Now
+</HashLink>
 
       {/* Mobile Menu Overlay */}
       {mobileOpen && (

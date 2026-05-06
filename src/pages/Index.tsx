@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import { 
   Instagram, ArrowRight, Heart, Users, Camera, Sparkles, 
@@ -7,12 +8,17 @@ import {
 } from "lucide-react";
 import ShinyButton from "@/components/ui/shiny-button";
 import { AuroraButton } from "@/components/ui/aurora-button";
-
+import sofa from "@/assets/1sofa.jpeg";
+import view from "@/assets/reclinerview.jpeg";
+import reclinerback from "@/assets/reclinerback.jpeg";
+import bed from "@/assets/bed.png";
+import washroom1 from "@/assets/washroom-1.jpeg";
 import heroHome from "@/assets/homehero.png";
 import fleetWanderer from "@/assets/outer-front.jpeg";
 import fleetNomad from "@/assets/outer-side.jpeg";
 import fleetExplorer from "@/assets/outer-back.jpeg";
 import experienceCouple from "@/assets/couple.webp";
+import threerecliners from "@/assets/3recliners.jpeg"
 
 import BookingForm from "@/components/BookingForm";
 import StarButton from "@/components/ui/star-button";
@@ -53,15 +59,21 @@ const whyChoose = [
 ];
 
 const sliderImages = [
-  { src: innerEntrance, alt: "Caravan Entrance Interior" },
-  { src: innerBedroomDoor, alt: "Bedroom Door Interior" },
-  { src: washroom2, alt: "Luxury Washroom" },
-  { src: dressingArea, alt: "Dressing Area" },
-  { src: mainSpace4Seat, alt: "Main Lounge 4 Seat Setup" },
-  { src: mainSpaceRecliners, alt: "Recliner Seating Area" },
-  { src: bedroomMain, alt: "Master Bedroom" },
-  { src: drivingSeat1, alt: "Driver Cabin View 1" },
-  { src: drivingSeat2, alt: "Driver Cabin View 2" },
+  { src: innerEntrance, alt: "Main Entrance" },
+  { src: threerecliners, alt: "Executive Cabin" },
+  { src: mainSpace4Seat, alt: "Dining Area" },
+  { src: dressingArea, alt: "Dressing Studio" },
+  { src: innerBedroomDoor, alt: "Privacy Partition" },
+  { src: view, alt: "Panoramic Interior" },
+  { src: mainSpaceRecliners, alt: "Luxury Recliners" },
+  { src: reclinerback, alt: "Entertainment Hub" },
+  { src: sofa, alt: "Plush Lounge Sofa" },
+  { src: bed, alt: "Master Bedroom" },
+  { src: bedroomMain, alt: "Master Suite" },
+  { src: washroom2, alt: "Premium Washroom" },
+  { src: washroom1, alt: "Shower Suite" },
+  { src: drivingSeat2, alt: "Captain's View" },
+  { src: drivingSeat1, alt: "Driver Cabin" },
 ];
 
 const teaserSlides = [
@@ -101,51 +113,65 @@ const Index = () => {
     <div className="overflow-x-hidden">
       {/* Hero Section */}
       <section ref={heroRef} className="relative h-screen w-full flex items-center justify-start overflow-hidden top-0 left-0">
-        <motion.div className="absolute inset-0 z-0" style={{ y: heroY }}>
-          <img src={heroHome} alt="Luxury caravan" className="w-full h-full object-cover scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
-        </motion.div>
-        
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-8 mt-20">
-          <motion.div 
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
-              <span className="block text-3xl md:text-4xl lg:text-5xl font-[200] text-on-surface/85 mb-1 md:mb-2">
-                Exclusive Caravan
-              </span>
-              <span className="block text-3xl md:text-4xl lg:text-5xl font-[500]">
-                Extraordinory Experience.
-              </span>
-            </h1>
-            
-            <p className="text-on-surface/70 text-base md:text-xl font-light mb-10 max-w-2xl leading-relaxed tracking-wide">
-              Experience the wild in unparalleled luxury. Not just travel, it's Roameo—redefining the modern wayfarer's journey through the Indian road.
-            </p>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1, type: "spring", stiffness: 100 }}
-              className="flex flex-wrap gap-4 md:gap-6 items-center"
-            >
-              <Link to="/contact">
-  <ShinyButton>
-   Book Now
-  </ShinyButton>
-</Link>
-              <Link to="/caravans">
-  <AuroraButton>
-    View Caravan
-  </AuroraButton>
-</Link>
-            </motion.div>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-20" />
-      </section>
+  {/* Background Layer - Remains exactly as you have it */}
+  <motion.div className="absolute inset-0 z-0" style={{ y: heroY }}>
+    <img src={heroHome} alt="Luxury caravan" className="w-full h-full object-cover scale-105" />
+    <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
+  </motion.div>
+  
+  {/* 
+      1. pt-32: Pushes the text higher into the sky area on mobile.
+      2. pb-24: Pushes the buttons lower into the ground area on mobile.
+      3. flex-col justify-between h-full: Creates the empty gap in the middle.
+  */}
+  <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-8 flex flex-col justify-between h-full pt-32 pb-24 md:pt-0 md:pb-0 md:justify-center md:h-auto mt-0 md:mt-20">
+    
+    {/* TEXT CONTENT - Pushed to top on mobile */}
+    <motion.div 
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      className="text-center md:text-left"
+    >
+      <h1 className="font-sans tracking-[-0.03em] text-on-surface mb-6 leading-[1.1]">
+        <span className="block text-3xl md:text-4xl lg:text-5xl font-[200] text-on-surface/85 mb-1 md:mb-2">
+          Exclusive Caravan
+        </span>
+        <span className="block text-3xl md:text-4xl lg:text-5xl font-[500]">
+          Extraordinary Experience.
+        </span>
+      </h1>
+      
+      <p className="text-on-surface/70 text-base md:text-xl font-light mb-0 md:mb-10 max-w-2xl mx-auto md:mx-0 leading-relaxed tracking-wide">
+        Experience the wild in unparalleled luxury.
+        <br/> 
+        Not just travel, it's Roameo—redefining the modern wayfarer's journey.
+      </p>
+    </motion.div>
+    
+    {/* CTA BUTTONS - Pushed to bottom on mobile */}
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 1, type: "spring", stiffness: 100 }}
+      className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center justify-center md:justify-start"
+    >
+      <HashLink smooth to="/contact#booking-form">
+        <ShinyButton className="w-full sm:w-auto">
+          Book Now
+        </ShinyButton>
+      </HashLink>
+
+      <Link to="/caravans">
+        <AuroraButton className="w-full sm:w-auto">
+          View Caravan
+        </AuroraButton>
+      </Link>
+    </motion.div>
+  </div>
+  
+  <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface-low to-transparent z-20" />
+</section>
 
       {/* NEW TEASER SECTION - Single Image Cross-Fade */}
       <section className="bg-surface-low py-32 px-6 md:px-16 overflow-hidden">
