@@ -7,11 +7,11 @@ import BookingForm from "@/components/BookingForm"; // Ensure this is imported
 
 // Assets
 import heroExperiences from "@/assets/hero-experiences.jpg";
-import templeImg from "@/assets/temple.jpg";
-import brideImg from "@/assets/bride.jpg";
-import productionImg from "@/assets/production.png";
-import corporateImg from "@/assets/main-space-4seat.jpeg";
-import leisureImg from "@/assets/homehero.png";
+import templeImg from "@/assets/spiritual.jpg";
+import brideImg from "@/assets/wedding.jpg";
+import productionImg from "@/assets/film.jpg";
+import corporateImg from "@/assets/corporate.jpg";
+import leisureImg from "@/assets/kitty.jpg";
 
 const sections = [
   {

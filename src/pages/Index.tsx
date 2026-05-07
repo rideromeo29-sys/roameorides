@@ -37,10 +37,10 @@ import drivingSeat2 from "@/assets/driving-2.jpeg";
 
 // New Experience Assets
 import heroExperiences from "@/assets/hero-experiences.jpg";
-import templeImg from "@/assets/temple.jpg";
-import brideImg from "@/assets/bride.jpg";
-import productionImg from "@/assets/production.png";
-import corporateImg from "@/assets/main-space-4seat.jpeg";
+import templeImg from "@/assets/spiritual.jpg";
+import brideImg from "@/assets/wedding.jpg";
+import productionImg from "@/assets/film.jpg";
+import corporateImg from "@/assets/corporate.jpg";
 import leisureImg from "@/assets/homehero.png";
 
 // Data Configurations
