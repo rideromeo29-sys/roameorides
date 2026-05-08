@@ -6,7 +6,7 @@ import HeroSection from "@/components/HeroSection";
 
 // Assets
 import heroAbout from "@/assets/hero-about.jpg";
-import aboutStory from "@/assets/about-story.jpg";
+import aboutStory from "@/assets/out1.jpeg";
 
 const offers = [
   { icon: Truck, title: "Luxury Caravan Rentals", desc: "Pristine fleet of high-end, fully-equipped mobile suites designed for ultimate comfort on the move." },
