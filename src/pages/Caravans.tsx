@@ -33,6 +33,7 @@ import view from "@/assets/reclinerview.jpeg";
 import threerecliners from "@/assets/3recliners.jpeg";
 import reclinerback from "@/assets/reclinerback.jpeg";
 import bed from "@/assets/bed.png"
+import diningImg from "@/assets/dining.jpeg";
 
 const innerViewItems = [
   { 
@@ -49,13 +50,13 @@ const innerViewItems = [
     url: threerecliners, 
     span: "md:col-span-1" 
   },
-  { 
-    id: 3, 
-    title: "Dining Area", 
-    desc: "Spacious four-seat dining configuration.", 
-    url: mainSpace4Seat, 
-    span: "md:col-span-1" 
-  },
+{ 
+  id: 3, 
+  title: "Four seat reclining sofa", // Updated title
+  desc: "Premium four-seat reclining configuration for maximum group comfort.", // Updated desc
+  url: mainSpace4Seat, 
+  span: "md:col-span-1" 
+},
   { 
     id: 4, 
     title: "Dressing Studio", 
@@ -139,6 +140,13 @@ const innerViewItems = [
     title: "Driver Cabin", 
     desc: "The command center of your journey.", 
     url: drivingSeat1, 
+    span: "md:col-span-1" 
+  },
+  { 
+    id: 16, 
+    title: "Outdoor Dining Setup", 
+    desc: "Enjoy gourmet meals under the open sky with our premium outdoor furniture.", 
+    url: diningImg, 
     span: "md:col-span-1" 
   },
 ];

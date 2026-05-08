@@ -19,7 +19,7 @@ import fleetNomad from "@/assets/outer-side.jpeg";
 import fleetExplorer from "@/assets/outer-back.jpeg";
 import experienceCouple from "@/assets/couple.webp";
 import threerecliners from "@/assets/3recliners.jpeg"
-
+import diningImg from "@/assets/dining.jpeg";
 import BookingForm from "@/components/BookingForm";
 import StarButton from "@/components/ui/star-button";
 import ImageAutoSlider from "@/components/ui/image-auto-slider";
@@ -61,7 +61,7 @@ const whyChoose = [
 const sliderImages = [
   { src: innerEntrance, alt: "Main Entrance" },
   { src: threerecliners, alt: "Executive Cabin" },
-  { src: mainSpace4Seat, alt: "Dining Area" },
+  { src: mainSpace4Seat, alt: "Four seat reclining sofa" },
   { src: dressingArea, alt: "Dressing Studio" },
   { src: innerBedroomDoor, alt: "Privacy Partition" },
   { src: view, alt: "Panoramic Interior" },
@@ -74,6 +74,7 @@ const sliderImages = [
   { src: washroom1, alt: "Shower Suite" },
   { src: drivingSeat2, alt: "Captain's View" },
   { src: drivingSeat1, alt: "Driver Cabin" },
+  { src: diningImg, alt: "Outdoor Dining Setup" },
 ];
 
 const teaserSlides = [
