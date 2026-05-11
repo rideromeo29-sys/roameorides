@@ -1,16 +1,17 @@
 import React, { useState, useRef } from "react";
 import { HashLink } from "react-router-hash-link";
-
 import { Link } from "react-router-dom";
 import { 
   Snowflake, Bed, Tv, UtensilsCrossed, Bath, 
-  Armchair, Sparkles, MapPin, ArrowRight,MessageCircle
+  Armchair, Sparkles, MapPin, ArrowRight, MessageCircle
 } from "lucide-react";
 import { motion } from "framer-motion";
 import InteractiveImageBentoGallery from "@/components/ui/bento-gallery";
+
 // Components
 import CaravanHero from "@/components/CaravanHero";
 import ImageGallery from "@/components/ui/image-gallery";
+
 // Assets
 import outerFront from "@/assets/outer-front.jpeg";
 import outerSide from "@/assets/outer-side.jpeg";
@@ -26,14 +27,13 @@ import mainSpaceRecliners from "@/assets/main-recliners.jpeg";
 import bedroomMain from "@/assets/bedroom-master.jpeg"; 
 import drivingSeat1 from "@/assets/driving-1.jpeg";
 import drivingSeat2 from "@/assets/driving-2.jpeg";
-import caravanVideo from "@/assets/caravan-reveal.MOV"; 
 import heroBg from "@/assets/out2.jpeg"; 
 import sofa from "@/assets/1sofa.jpeg";
 import view from "@/assets/reclinerview.jpeg";
 import threerecliners from "@/assets/3recliners.jpeg";
 import reclinerback from "@/assets/reclinerback.jpeg";
-import bed from "@/assets/bed.png"
-import diningImg from "@/assets/dining.jpeg";
+import bed from "@/assets/bed.png";
+import diningImg from "@/assets/dining.jpeg"; // Added for 17th image
 
 const innerViewItems = [
   { 
@@ -50,13 +50,13 @@ const innerViewItems = [
     url: threerecliners, 
     span: "md:col-span-1" 
   },
-{ 
-  id: 3, 
-  title: "Four seat reclining sofa", // Updated title
-  desc: "Premium four-seat reclining configuration for maximum group comfort.", // Updated desc
-  url: mainSpace4Seat, 
-  span: "md:col-span-1" 
-},
+  { 
+    id: 3, 
+    title: "Four seat reclining sofa", // Updated title
+    desc: "Premium four-seat reclining configuration for maximum group comfort.", 
+    url: mainSpace4Seat, 
+    span: "md:col-span-1" 
+  },
   { 
     id: 4, 
     title: "Dressing Studio", 
@@ -65,7 +65,7 @@ const innerViewItems = [
     span: "md:col-span-1" 
   },
   { 
-    id: 8, 
+    id: 5, 
     title: "Privacy Partition", 
     desc: "Elegant divider leading to the master suite.", 
     url: innerBedroomDoor, 
@@ -78,7 +78,7 @@ const innerViewItems = [
     url: view, 
     span: "md:col-span-1" 
   },
-   { 
+  { 
     id: 7, 
     title: "Luxury Recliners", 
     desc: "Premium massage recliners for maximum relaxation.", 
@@ -86,13 +86,12 @@ const innerViewItems = [
     span: "md:col-span-1" 
   },
   { 
-    id: 5, 
+    id: 8, 
     title: "Entertainment Hub", 
     desc: "High-definition viewing area for a cinema-on-wheels experience.", 
     url: reclinerback, 
     span: "md:col-span-1" 
   },
-   
   { 
     id: 9, 
     title: "Plush Lounge Sofa", 
@@ -144,7 +143,7 @@ const innerViewItems = [
   },
   { 
     id: 16, 
-    title: "Outdoor Dining Setup", 
+    title: "Outdoor Dining Setup", // Added final item
     desc: "Enjoy gourmet meals under the open sky with our premium outdoor furniture.", 
     url: diningImg, 
     span: "md:col-span-1" 
@@ -152,44 +151,24 @@ const innerViewItems = [
 ];
 
 const amenities = [
-    { icon: Snowflake, label: "1.5 Ton AC" },
-    { icon: Tv, label: "42\" Smart TV" },
-    { icon: Bed, label: "King Master Bed" },
-    { icon: UtensilsCrossed, label: "Pantry & Fridge" },
-    { icon: Bath, label: "Luxury Shower" },
-    { icon: Armchair, label: "Massage Recliners" },
-    { icon: Sparkles, label: "Mood Lighting" },
-    { icon: MapPin, label: "Live GPS" }
-  ];
+  { icon: Snowflake, label: "1.5 Ton AC" },
+  { icon: Tv, label: "42\" Smart TV" },
+  { icon: Bed, label: "King Master Bed" },
+  { icon: UtensilsCrossed, label: "Pantry & Fridge" },
+  { icon: Bath, label: "Luxury Shower" },
+  { icon: Armchair, label: "Massage Recliners" },
+  { icon: Sparkles, label: "Mood Lighting" },
+  { icon: MapPin, label: "Live GPS" }
+];
 
 const CaravansPage = () => {
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
-    }
-  };
-
-  const HoverOverlay = ({ text }: { text: string }) => (
-    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
-      <span className="text-white text-xs font-bold uppercase tracking-[0.2em] border-b border-orange-500 pb-1">
-        {text}
-      </span>
-    </div>
-  );
-
   return (
     <div className="bg-[#0a0a0a] text-white overflow-x-hidden min-h-screen">
       
+      {/* Updated to use YouTube ID to reduce bandwidth usage */}
       <CaravanHero 
         backgroundImage={heroBg}
-        videoSrc={caravanVideo}
-        isMuted={isMuted}
-        onToggleMute={toggleMute}
-        videoRef={videoRef}
+        youtubeId="ZYJv1VJt0Ts"
       />
 
       {/* EXPLORE HEADING */}
@@ -201,70 +180,66 @@ const CaravansPage = () => {
       </section>
 
       {/* OUTER VIEWS */}
-{/* OUTER VIEWS - Conditional Rendering */}
-<section className="pb-24 px-6 max-w-7xl mx-auto relative z-20">
-  <h3 className="text-2xl font-sans mb-10 text-stone-400 uppercase tracking-widest">
-    Outer Views
-  </h3>
+      <section className="pb-24 px-6 max-w-7xl mx-auto relative z-20">
+        <h3 className="text-2xl font-sans mb-10 text-stone-400 uppercase tracking-widest">
+          Outer Views
+        </h3>
 
-  {/* DESKTOP: Interactive Image Gallery */}
-  <div className="hidden md:block">
-    <ImageGallery 
-      images={[
-        { img: outerFront, label: "Front Profile" },
-        { img: outerSide, label: "Side View" },
-        { img: outerBack, label: "Rear Design" },
-        { img: outerPlain, label: "Minimalist Exterior" }
-      ]} 
-    />
-  </div>
-
-  {/* MOBILE: Normal Vertical Stack (Full Image Visible) */}
-  <div className="md:hidden space-y-8">
-    {[
-      { img: outerFront, label: "Front Profile" },
-      { img: outerSide, label: "Side View" },
-      { img: outerBack, label: "Rear Design" },
-      { img: outerPlain, label: "Minimalist Exterior" }
-    ].map((item, idx) => (
-      <motion.div 
-        key={idx}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        whileTap={{ scale: 0.98 }} // Haptic feedback for mobile
-        className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5"
-      >
-        {/* Using aspect-[1448/1086] ensures the whole image is visible without cropping */}
-        <div className="aspect-[1448/1086] w-full">
-          <img 
-            src={item.img} 
-            alt={item.label} 
-            className="w-full h-full object-contain bg-black" 
+        {/* DESKTOP */}
+        <div className="hidden md:block">
+          <ImageGallery 
+            images={[
+              { img: outerFront, label: "Front Profile" },
+              { img: outerSide, label: "Side View" },
+              { img: outerBack, label: "Rear Design" },
+              { img: outerPlain, label: "Minimalist Exterior" }
+            ]} 
           />
         </div>
-        
-        {/* Persistent Label for Mobile */}
-        <div className="p-4 bg-stone-900/50 backdrop-blur-sm border-t border-white/5">
-          <span className="text-orange-500 font-bold uppercase tracking-widest text-[10px]">
-            {item.label}
-          </span>
+
+        {/* MOBILE */}
+        <div className="md:hidden space-y-8">
+          {[
+            { img: outerFront, label: "Front Profile" },
+            { img: outerSide, label: "Side View" },
+            { img: outerBack, label: "Rear Design" },
+            { img: outerPlain, label: "Minimalist Exterior" }
+          ].map((item, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileTap={{ scale: 0.98 }}
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5"
+            >
+              <div className="aspect-[1448/1086] w-full">
+                <img 
+                  src={item.img} 
+                  alt={item.label} 
+                  className="w-full h-full object-contain bg-black" 
+                />
+              </div>
+              <div className="p-4 bg-stone-900/50 backdrop-blur-sm border-t border-white/5">
+                <span className="text-orange-500 font-bold uppercase tracking-widest text-[10px]">
+                  {item.label}
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </motion.div>
-    ))}
-  </div>
-</section>
+      </section>
 
-      {/* INNER VIEWS SECTION - Unified Bento for all devices */}
-<section className="border-t border-white/5 bg-[#0a0a0a]">
-  <InteractiveImageBentoGallery 
-    imageItems={innerViewItems}
-    title="Inner Sanctuary"
-    description="A masterfully crafted interior designed for luxury on the move. Use arrows or swipe to explore."
-  />
-</section>
+      {/* INNER VIEWS SECTION */}
+      <section className="border-t border-white/5 bg-[#0a0a0a]">
+        <InteractiveImageBentoGallery 
+          imageItems={innerViewItems}
+          title="Inner Sanctuary"
+          description="A masterfully crafted interior designed for luxury on the move. Use arrows or swipe to explore."
+        />
+      </section>
 
-      {/* AMENITIES STRIP - MATCHING REFERENCE UI */}
+      {/* AMENITIES STRIP */}
       <section id="amenities-section" className="bg-[#0a0a0a] py-24 px-6 border-y border-white/5 relative z-20">
         <div className="max-w-5xl mx-auto text-center">
           <motion.h2 
@@ -282,17 +257,13 @@ const CaravansPage = () => {
                 whileHover={{ y: -8 }}
                 className="flex flex-col items-center gap-4"
               >
-                {/* Yellow Icon with specific UI reference color */}
                 <div className="text-[#fbbf24] transition-transform duration-300">
                   <a.icon size={32} strokeWidth={1.5} />
                 </div>
-                
-                {/* Text styling matching reference font size and color */}
                 <div className="flex flex-col gap-2">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold">
                     {a.label}
                   </span>
-                  {/* Yellow Accent Line */}
                   <div className="h-[2px] w-6 bg-[#fbbf24] mx-auto" />
                 </div>
               </motion.div>
@@ -302,11 +273,8 @@ const CaravansPage = () => {
       </section>
 
       {/* FINAL CTA */}
-      {/* CTA SECTION - Updated to match reference style */}
       <section className="bg-primary-container py-16 px-6 md:px-16 relative overflow-hidden">
-        {/* Background Decorative Element (Optional, matches the 'moving palace' vibe) */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl" />
-        
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
           <motion.h3 
             initial={{ opacity: 0, x: -20 }}
@@ -316,7 +284,6 @@ const CaravansPage = () => {
           >
             Ready for the road?
           </motion.h3>
-          
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}

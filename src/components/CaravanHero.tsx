@@ -1,62 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Volume2, VolumeX, ArrowRight, Play, Pause } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
 
 interface CaravanHeroProps {
   backgroundImage: string;
-  videoSrc: string;
-  isMuted: boolean;
-  onToggleMute: () => void;
-  videoRef: React.RefObject<HTMLVideoElement | null>;
+  youtubeId: string; 
 }
 
 const CaravanHero = ({ 
   backgroundImage, 
-  videoSrc, 
-  isMuted, 
-  onToggleMute, 
-  videoRef 
+  youtubeId 
 }: CaravanHeroProps) => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(0);
-
-  // Update progress bar as video plays
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      const progress = (video.currentTime / video.duration) * 100;
-      setProgress(progress);
-    };
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
-  }, [videoRef]);
-
-  // Toggle Play/Pause
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  // Seek video when clicking progress bar
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const seekTime = (Number(e.target.value) / 100) * (videoRef.current?.duration || 0);
-    if (videoRef.current) {
-      videoRef.current.currentTime = seekTime;
-      setProgress(Number(e.target.value));
-    }
-  };
-
   return (
     <section className="relative w-full flex flex-col md:flex-row bg-[#0a0a0a]">
       {/* GLOBAL BACKGROUND LAYER */}
@@ -88,7 +43,7 @@ const CaravanHero = ({
           </h1>
           <p className="text-white/70 text-lg md:text-xl font-light mb-10 italic">
             Caravan, a moving palace.
-            <br></br>
+            <br />
             Experience the ultimate fusion of five-star luxury and the open road.
           </p>
          <HashLink 
@@ -101,55 +56,27 @@ const CaravanHero = ({
         </motion.div>
       </div>
 
-      {/* VIDEO SECTION */}
+      {/* VIDEO SECTION - Simplified for Mobile Touch Smoothness */}
       <div className="relative z-20 h-screen w-full flex items-center justify-center md:w-1/2 overflow-hidden">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="w-[85%] sm:w-[320px] md:w-[340px] aspect-[9/16] rounded-[2.8rem] border border-white/20 p-2.5 bg-white/5 backdrop-blur-md shadow-2xl relative"
+          /* Removed backdrop-blur and padding on mobile to ensure the iframe gets the touch events */
+          className="w-[90%] sm:w-[320px] md:w-[340px] aspect-[9/16] rounded-[2rem] md:rounded-[2.8rem] md:border md:border-white/20 md:p-2.5 md:bg-white/5 md:backdrop-blur-md shadow-2xl relative"
         >
-          <div className="w-full h-full rounded-[2.3rem] overflow-hidden bg-black relative">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted={isMuted}
-              playsInline
-              className="w-full h-full object-cover" 
-              src={videoSrc}
-            />
-
-            {/* --- VIDEO CONTROLS OVERLAY --- */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-              
-              {/* Progress Bar */}
-              <input 
-                type="range" 
-                min="0" 
-                max="100" 
-                value={progress} 
-                onChange={handleSeek}
-                className="w-full h-1 mb-6 accent-[#E87722] cursor-pointer"
-              />
-
-              <div className="flex items-center justify-between">
-                {/* Play/Pause Button */}
-                <button 
-                  onClick={togglePlay}
-                  className="p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/10 text-white hover:bg-[#E87722] transition-colors"
-                >
-                  {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" />}
-                </button>
-
-                {/* Mute Button */}
-                <button 
-                  onClick={onToggleMute}
-                  className="p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/10 text-white hover:bg-[#E87722] transition-colors"
-                >
-                  {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                </button>
-              </div>
-            </div>
+          <div className="w-full h-full rounded-[1.8rem] md:rounded-[2.3rem] overflow-hidden bg-black relative">
+            <iframe
+              className="w-full h-full"
+              /* - mute=1: Voice off by default 
+                 - controls=1: Shows native controls for easy mobile tapping
+                 - playsinline=1: Prevents iOS from forcing full-screen
+              */
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=1&rel=0&iv_load_policy=3&playsinline=1&modestbranding=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </motion.div>
       </div>
